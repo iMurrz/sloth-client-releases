@@ -6,9 +6,9 @@ GitHub checks published installer, feed and inventory signatures and download ha
 
 Sloth Client is an independent Windows Minecraft launcher and in-game client with original pink sloth artwork. Choose your own worlds and multiplayer servers.
 
-## 0.0.41 Holiday themes and modpacks
+## 0.0.42 Reliability and performance
 
-Choose Halloween, Thanksgiving, Christmas and Easter themes, install compatible Modrinth packs inside Sloth, and see clearer mod compatibility labels. The launcher remembers its window size and position.
+Faster verified pack downloads, cleaner retry handling and safer client settings recovery. The existing interface and holiday choices are preserved.
 
 ## Gameplay efficiency
 
@@ -17,9 +17,9 @@ The 0.0.29 audit removes render-thread performance-file writes, unnecessary Zoom
 
 ## Download
 
-**[Download Sloth Client 0.0.41 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.41/Sloth-Client-Setup-0.0.41.exe)**
+**[Download Sloth Client 0.0.42 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.42/Sloth-Client-Setup-0.0.42.exe)**
 
-[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.41)
+[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.42)
 
 **Unsigned development release:** trusted Windows publisher signing is postponed. Windows may display an unknown-publisher or SmartScreen warning. Separate Ed25519 integrity signatures do not replace Windows publisher trust. Install this version manually once to replace older builds with failing update checks. This development build checks for newer releases, downloads and verifies the signed Sloth update feed and installer, then offers Install and restart inside the client. Installation requires explicit confirmation and Minecraft must be closed. Production updates still require trusted Windows publisher signing.
 
