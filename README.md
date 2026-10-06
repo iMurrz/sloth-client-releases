@@ -6,9 +6,9 @@ GitHub checks published installer, feed and inventory signatures and download ha
 
 Sloth Client is an independent Windows Minecraft launcher and in-game client with original pink sloth artwork. Choose your own worlds and multiplayer servers.
 
-## 0.0.46 Mod inspection repair
+## 0.0.47 REI compatibility inspection fix
 
-Mod Manager inspection now defaults to the bundled Java 21 runtime, fixing `javaVersion is not defined`. Explicit Java-version compatibility checks are preserved. The narrow paired AppleSkin optional JEI warning fix remains in place; genuine missing-class errors remain visible.
+Roughly Enough Items now passes metadata inspection on Minecraft 1.21.11. Fabric ranges such as `~1.21-` handle prerelease suffixes correctly. Dependency guidance distinguishes missing requirements, version mismatches and incomplete inspection. The Java 21 inspection repair and narrow AppleSkin/JEI warning fix are preserved.
 
 ## Gameplay efficiency
 
@@ -17,9 +17,9 @@ The 0.0.29 audit removes render-thread performance-file writes, unnecessary Zoom
 
 ## Download
 
-**[Download Sloth Client 0.0.46 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.46/Sloth-Client-Setup-0.0.46.exe)**
+**[Download Sloth Client 0.0.47 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.47/Sloth-Client-Setup-0.0.47.exe)**
 
-[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.46)
+[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.47)
 
 **Unsigned development release:** trusted Windows publisher signing is postponed. Windows may display an unknown-publisher or SmartScreen warning. Separate Ed25519 integrity signatures do not replace Windows publisher trust. Install this version manually once to replace older builds with failing update checks. This development build checks for newer releases, downloads and verifies the signed Sloth update feed and installer, then offers Install and restart inside the client. Installation requires explicit confirmation and Minecraft must be closed. Production updates still require trusted Windows publisher signing.
 
