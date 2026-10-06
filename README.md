@@ -6,9 +6,11 @@ GitHub checks published installer, feed and inventory signatures and download ha
 
 Sloth Client is an independent Windows Minecraft launcher and in-game client with original pink sloth artwork. Choose your own worlds and multiplayer servers.
 
-## 0.0.47 REI compatibility inspection fix
+## 0.0.48 Compatibility and Java consistency fixes
 
-Roughly Enough Items now passes metadata inspection on Minecraft 1.21.11. Fabric ranges such as `~1.21-` handle prerelease suffixes correctly. Dependency guidance distinguishes missing requirements, version mismatches and incomplete inspection. The Java 21 inspection repair and narrow AppleSkin/JEI warning fix are preserved.
+Fabric wildcard ranges now correctly handle prereleases and repeated trailing wildcards. Mod Manager, support reports and launch readiness use the selected Java runtime. The Java picker checks the runtime before saving it and rejects Java older than 21. The previous Java inspection and narrow AppleSkin/JEI warning fixes remain intact.
+
+The audit passed 17 regression suites, 19 security tests, 1,410 comparisons against Fabric Loader, packaged Java and REI checks, and 42 packaged screen/size combinations. Compatibility regression checks now run before installer builds.
 
 ## Gameplay efficiency
 
@@ -17,9 +19,9 @@ The 0.0.29 audit removes render-thread performance-file writes, unnecessary Zoom
 
 ## Download
 
-**[Download Sloth Client 0.0.47 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.47/Sloth-Client-Setup-0.0.47.exe)**
+**[Download Sloth Client 0.0.48 for Windows](https://github.com/iMurrz/sloth-client-releases/releases/download/v0.0.48/Sloth-Client-Setup-0.0.48.exe)**
 
-[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.47)
+[Release notes and integrity signatures](https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.48)
 
 **Unsigned development release:** trusted Windows publisher signing is postponed. Windows may display an unknown-publisher or SmartScreen warning. Separate Ed25519 integrity signatures do not replace Windows publisher trust. Install this version manually once to replace older builds with failing update checks. This development build checks for newer releases, downloads and verifies the signed Sloth update feed and installer, then offers Install and restart inside the client. Installation requires explicit confirmation and Minecraft must be closed. Production updates still require trusted Windows publisher signing.
 
