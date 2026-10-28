@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data: https://cdn.modrinth.com; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sloth Client</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./redesign.css">
+</head>
+<body>
+  <div class="halloween-atmosphere" aria-hidden="true" inert>
+    <div class="halloween-lurker"><img alt=""></div>
+    <div class="halloween-vignette"></div><div class="halloween-mist"></div><div class="halloween-fog fog-middle"></div><div class="halloween-fog fog-low"></div><div class="halloween-fog fog-wisps"></div><div class="halloween-moon-haze"></div><div class="halloween-watching-eyes"></div>
+<i class="halloween-ember ember-0"></i><i class="halloween-ember ember-1"></i><i class="halloween-ember ember-2"></i><i class="halloween-ember ember-3"></i><i class="halloween-ember ember-4"></i><i class="halloween-ember ember-5"></i><i class="halloween-ember ember-6"></i><i class="halloween-ember ember-7"></i><i class="halloween-ember ember-8"></i><i class="halloween-ember ember-9"></i><i class="halloween-ember ember-10"></i><i class="halloween-ember ember-11"></i>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="sloth-brand-mark" src="./assets/pink-sloth-emblem.png" alt="Sloth logo"><div><strong>SLOTH</strong><span>CLIENT</span></div></div>
+      <nav class="sidebar-navigation" aria-label="Launcher sections">
+      <button class="nav-item active" data-page="home"><span class="nav-icon">▶</span> Play</button>
+      <button class="nav-item" data-page="downloads"><span class="nav-icon">⇣</span> Downloads</button>
+      <button class="nav-item" data-page="appearance"><span class="nav-icon">♙</span> Account</button>
+      <button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span> Settings</button>
+      <button class="nav-item" data-page="updates"><span class="nav-icon">↻</span> Update Client</button>
+      <button class="nav-item" data-page="toolbox"><span class="nav-icon">?</span> Help</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+
+      <div class="update-card" id="update-card" hidden>
+        <div class="eyebrow">UPDATE READY</div>
+        <p id="update-text">A new launcher version is ready.</p>
+        <button class="mini-button" id="install-update">RESTART &amp; UPDATE</button>
+      </div>
+
+      <button class="account-card" id="account-button" aria-haspopup="true" aria-expanded="false">
+        <canvas class="avatar" id="account-avatar" width="30" height="30"></canvas>
+        <span class="account-copy"><strong id="account-name">Not signed in</strong><span id="account-sub">Sign in with Microsoft</span></span>
+        <span class="chevron">›</span>
+      </button>
+      <div class="sidebar-footer"><div>Sloth Client <span id="app-version">—</span></div><p>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p></div>
+    </aside>
+
+    <div class="account-menu panel" id="account-menu" hidden>
+      <div class="eyebrow muted">ACCOUNTS</div>
+      <div id="account-list"></div>
+      <button class="account-add" id="add-account"><span>＋</span> Add Microsoft account</button>
+      <p class="menu-note" id="account-note">You sign in on microsoft.com in your own browser. The launcher never sees your password.</p>
+    </div>
+
+    <main class="main-area">
+
+      <header class="topbar">
+        <div class="crumb"><button class="crumb-home" data-go="home">Sloth Client</button><span>/</span><span id="download-crumb" hidden><button id="download-crumb-link">Downloads</button><span>/</span></span><b id="section-name">Home</b></div>
+        <button class="tool-button" id="quick-open">Find anything <kbd>Ctrl K</kbd></button>
+
+      </header>
+      <div class="download-workspace-header" id="account-workspace-header" hidden><nav class="download-tabs" aria-label="Account sections"><button data-go="appearance">Skin & cape</button><button data-go="friends">Friends</button><button data-go="shots">Screenshots</button></nav></div>
+      <div class="download-workspace-header" id="studio-workspace-header" hidden>
+        <div class="download-workspace-title"><div><div class="eyebrow">YOUR CLIENT WORKSPACE</div><h2>Client Studio</h2><p>Client tools, setup presets and storage in one workspace.</p></div></div>
+        <nav class="download-tabs" role="tablist" aria-label="Client Studio sections">
+          <button id="studio-tab-experience" role="tab" data-studio-page="experience" aria-controls="page-experience" aria-selected="false" tabindex="-1">Client Tools</button>
+          <button id="studio-tab-workshop" role="tab" data-studio-page="workshop" aria-controls="page-workshop" aria-selected="false" tabindex="-1">Setup Studio</button>
+        </nav>
+      </div>
+      <div class="download-workspace-header" id="download-workspace-header" hidden>
+        <div class="download-workspace-title"><div><div class="eyebrow">YOUR CONTENT</div><h2>Downloads</h2><p>Mods, modpacks and your installed games.</p></div><span class="instance-badge" id="download-instance-label">Active instance</span></div>
+        <nav class="download-tabs" role="tablist" aria-label="Download Center sections">
+          <button id="download-tab-instances" role="tab" data-download-page="instances" aria-controls="page-instances" aria-selected="false" tabindex="-1">My games</button>
+          <button id="download-tab-downloads" role="tab" data-download-page="downloads" aria-controls="page-downloads" aria-selected="false" tabindex="-1">Activity</button>
+          <button id="download-tab-browse" role="tab" data-download-page="browse" aria-controls="page-browse" aria-selected="false" tabindex="-1">Discover Mods</button>
+          <button id="download-tab-mods" role="tab" data-download-page="mods" aria-controls="page-mods" aria-selected="false" tabindex="-1">Mod Manager</button>
+          <button id="download-tab-packs" role="tab" data-download-page="packs" aria-controls="page-packs" aria-selected="false" tabindex="-1">Modpacks</button>
+          <button id="download-tab-saved" role="tab" data-download-page="saved" aria-controls="page-saved" aria-selected="false" tabindex="-1">Saved Projects</button>
+        </nav>
+      </div>
+      <div class="download-workspace-header" id="toolbox-workspace-header" hidden>
+        <div class="download-workspace-title"><div><div class="eyebrow">KEEP YOUR SETUP HEALTHY</div><h2>Help</h2><p>Repair your game or restore a backup.</p></div></div>
+        <nav class="download-tabs" role="tablist" aria-label="Toolbox sections">
+          <button id="toolbox-tab-toolbox" role="tab" data-toolbox-page="toolbox" aria-controls="page-toolbox" aria-selected="false" tabindex="-1">Help</button>
+          <button id="toolbox-tab-care" role="tab" data-toolbox-page="care" aria-controls="page-care" aria-selected="false" tabindex="-1">Repair</button>
+          <button id="toolbox-tab-trust" role="tab" data-toolbox-page="trust" aria-controls="page-trust" aria-selected="false" tabindex="-1">Security</button>
+          <button id="toolbox-tab-recovery" role="tab" data-toolbox-page="recovery" aria-controls="page-recovery" aria-selected="false" tabindex="-1">Backups</button>
+        </nav>
+      </div>
+      <section class="page" id="page-friends">
+        <div class="panel care-section"><div class="section-heading"><h2>MINECRAFT ACCOUNT FRIENDS</h2><button class="tool-button" id="minecraft-friends-refresh">Load Minecraft friends</button></div><p class="field-help">Read your official friends and activity through Minecraft Services. This does not send invitations, accept requests or publish your presence. Availability depends on Minecraft account and application permissions.</p><p id="minecraft-friends-status" class="field-help" role="status">Not connected. Choose a signed-in account and load when ready.</p><div id="minecraft-friends-list" class="friends-grid"></div></div>
+        <div class="eyebrow">YOUR PEOPLE</div><h1>Better together.</h1>
+        <p class="field-help">Your saved friends follow you across Sloth profiles. Active means visible in the player list of your current multiplayer server. Saving a username does not send a friend request. No global tracking, chat upload or account changes.</p>
+        <div class="panel care-section"><div class="section-heading"><h2>FRIENDS</h2><span id="friends-count" class="instance-badge">0 saved</span><button class="tool-button" id="friends-refresh">Refresh</button></div>
+        <div class="friends-controls"><input id="friends-add-name" maxlength="16" placeholder="Minecraft Java username" aria-label="Friend username"><button class="save-button" id="friends-add">ADD FRIEND</button><input id="friends-search" placeholder="Find a friend" aria-label="Search friends"><label><input type="checkbox" id="friends-active"> Active only</label></div>
+        <p id="friends-status" class="field-help" role="status" aria-live="polite"></p><div id="friends-list" class="friends-grid"></div></div>
+      </section>
+
+      <section class="page toolbox-page" id="page-trust" role="tabpanel" aria-labelledby="toolbox-tab-trust">
+        <div class="page-intro"><div class="eyebrow"><span></span> SLOTH SESSION SEAL</div><h1>YOUR SETUP.<br><em>YOUR APPROVAL.</em></h1><p>Review the files in your session. Pause launch when your approved mods or scripts change.</p></div>
+        <div class="panel seal-hero"><div><div class="eyebrow muted">ACTIVE INSTANCE</div><h2 id="trust-instance">Loading…</h2><p id="trust-seal-summary" role="status"></p><code id="trust-fingerprint">No seal yet</code></div><div class="seal-emblem" aria-hidden="true">⬡</div></div>
+        <div id="trust-boundaries" class="trust-grid"></div>
+        <div class="panel care-section"><h2>REVIEW YOUR SESSION FILES</h2><p class="field-help">Session Seal hashes enabled top-level mod JARs and files under scripts/ and kubejs/. It does not upload files or read accounts. First approval records what is present; review its origin yourself. A matching hash does not establish that a mod is safe.</p><div class="update-page-actions"><button class="save-button" id="seal-review">INSPECT SETUP</button><button class="tool-button" id="seal-disable">Disable launch protection</button></div><p id="seal-status" role="status" aria-live="polite"></p><div id="seal-review-content" hidden><div class="seal-review-summary" id="seal-review-summary"></div><label class="seal-protection"><input type="checkbox" id="seal-protect" checked> Pause launch when this approved mod/script setup changes</label><p class="field-help">Inspect and approve with Minecraft closed. Intentional updates can change your seal. Each approval rechecks the files and binds the seal to this instance using a locally protected key. Copied seals do not grant approval. Review expires after ten minutes.</p><button class="save-button" id="seal-approve">APPROVE REVIEWED SETUP</button><div id="seal-files"></div><div class="log-toolbar"><button class="tool-button" id="seal-previous">Previous files</button><button class="tool-button" id="seal-next">Next files</button><span id="seal-file-page" class="field-help"></span></div></div></div>
+        <div class="panel care-section"><h2>WHAT THE BOUNDARIES MEAN</h2><p class="field-help">Account credentials stay in the main process, encrypted for this OS user when secure storage is available. They are not sent to the interface. The Minecraft session token is delivered through a pipe rather than the process command line. Signed updates and isolated interface windows provide separate protections. When secure storage is unavailable, seal approvals also need review after restarting Sloth.</p><p class="field-help">Minecraft mods execute with your user account's access. Session Seal detects changes in the listed folders; it does not sandbox mods, attest their safety, or protect against malware already running as you. Java, libraries, launcher files, configuration and other folders are outside its seal scope. Secrets and private server logic must stay on a server you control, never inside a distributed client.</p></div>
+      </section>
+      <!-- HOME -->
+      <section class="page active" id="page-home">
+        <div class="hero">
+          <div class="hero-grain"></div>
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> YOUR GAME. YOUR CLIENT.</div>
+            <div class="instance-pill"><i></i><span>ACTIVE INSTANCE</span><b id="active-instance-label">Sloth</b><button data-go="instances">CHANGE ↗</button></div>
+            <h1><em>SLOTH CLIENT.</em></h1>
+            <p>Minecraft <b id="hero-version">1.21.11</b> with Sloth Client and a tuned performance pack.<br>Play across supported server versions with ViaFabricPlus.</p>
+            <div class="play-area">
+              <button class="play-button" id="play"><span class="play-triangle">▶</span><span class="play-text"><b id="play-title">PLAY</b><small id="play-subtitle">LAUNCH MINECRAFT</small></span><span class="play-arrow">↗</span></button>
+              <div class="play-links">
+                
+                <button class="text-button danger" id="stop-game" hidden>FORCE CLOSE GAME</button>
+              </div>
+            </div>
+            <div class="progress" id="progress" hidden>
+              <div class="progress-head"><span id="progress-label">Getting ready</span><span id="progress-detail"></span></div>
+              <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true"><img class="holiday-scene" alt="" hidden><div class="minecraft-web web-upper"></div><div class="minecraft-web web-lower"></div><img class="minecraft-critter minecraft-spider" src="assets/halloween-minecraft-spider.svg" alt=""><img class="minecraft-critter minecraft-bat bat-near" src="assets/halloween-minecraft-bat.svg" alt=""><img class="minecraft-critter minecraft-bat bat-far" src="assets/halloween-minecraft-bat.svg" alt="">    <img class="halloween-mob mob-ghast" src="assets/scare-witch-ghast.svg" alt="">
+    <img class="halloween-mob mob-pumpkin" src="assets/scare-creeper-pumpkin.svg" alt="">
+    <img class="halloween-mob mob-enderman" src="assets/scare-pumpkin-enderman.svg" alt="">
+<div class="ring ring-one"></div><div class="ring ring-two"></div><div class="ember ember-a"></div><div class="ember ember-b"></div><div class="ember ember-c"></div><div class="hero-sloth"><img src="assets/sloth-logo.svg" alt=""><svg class="halloween-sloth" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="haunt-pumpkin" x2="1" y2="1"><stop stop-color="#ffc176"/><stop offset="1" stop-color="#e36526"/></linearGradient></defs><rect x="20" y="20" width="472" height="472" rx="136" fill="#1c1525"/><path d="M104 260C94 120 170 77 256 88C342 77 418 120 408 260C399 378 339 428 256 429C173 428 113 378 104 260Z" fill="url(#haunt-pumpkin)"/><path d="M138 245C139 157 200 141 256 167C312 141 373 157 374 245C375 341 314 392 256 392C198 392 137 341 138 245Z" fill="#ffc68b"/><path d="M150 223C173 193 207 196 230 226L209 286C179 278 159 256 150 223Z M362 223C339 193 305 196 282 226L303 286C333 278 353 256 362 223Z" fill="#372032"/><g class="haunted-eyes"><g class="haunted-gaze"><path d="M171 236L188 220L207 239L192 250Z M305 239L324 220L341 236L320 250Z" fill="#ffe8a3"/></g></g><path d="M239 282L256 260L274 282Q255 299 239 282Z" fill="#372032"/><g class="haunted-mouth"><path d="M202 309Q256 324 310 309Q302 355 256 362Q211 355 202 309Z" fill="#291827"/><path d="M213 313L226 337L237 320L250 341L265 321L279 340L291 315L302 318L292 345L277 352L269 337L256 357L243 337L233 350L219 342Z" fill="#ffe3a5"/><path d="M202 309Q256 324 310 309" stroke="#9b482c" stroke-width="5"/></g><path d="M236 92Q235 67 249 55L275 59Q259 74 263 91" fill="#809865"/><path d="M107 264Q85 302 105 328M405 264Q425 302 408 329" stroke="#e78443" stroke-width="6" stroke-linecap="round"/></svg></div><div class="hero-caption">YOUR NEXT SESSION.<br><b>THE SLOTH WAY.</b></div></div>
+        </div>
+
+        <details class="settings-group home-extra"><summary><span>Session & setup details</span><small>Optional information about your current game</small></summary><div class="settings-group-content">        <div class="section-heading"><div><div class="eyebrow muted">READY WHEN YOU ARE</div><h2>YOUR NEXT RUN</h2></div></div>
+        <div class="dashboard-grid no-server">
+          
+          <article class="feature-card panel">
+            <div class="feature-icon">✦</div>
+            <div class="eyebrow muted">BUILT FOR EVERY SERVER</div>
+            <h3>YOUR SLOTH<br>CLIENT.</h3>
+            <p>Press Right Shift or F8 in Minecraft for HUD, crosshair, features and settings.</p>
+            <button class="arrow-link" data-go="client">VIEW PERFORMANCE MODS <span>→</span></button>
+          </article>
+          <article class="setup-card panel">
+            <div class="update-head"><div class="eyebrow muted">YOUR SETUP</div><span class="update-tag" id="setup-tag">READY</span></div>
+            <div class="setup-row"><span class="setup-check done">✓</span><span>Minecraft <b id="setup-game">1.21.11</b> + Fabric</span><b>AUTO</b></div>
+            <div class="setup-row"><span class="setup-check" id="setup-client-check">✓</span><span>Sloth Client mod</span><b id="setup-client">BUNDLED</b></div>
+            <div class="setup-row"><span class="setup-check done">✓</span><span><b id="setup-mods">0</b> performance mods</span><button class="row-link" data-go="client">EDIT</button></div>
+            <div class="setup-row"><span class="setup-check done">✓</span><span><b id="setup-memory">4 GB</b> memory</span><button class="row-link" data-go="settings">EDIT</button></div>
+          </article>
+        </div>
+        <article class="panel session-panel"><div><div class="eyebrow muted">YOUR SESSION</div><h2 id="session-elapsed">Not playing</h2><p id="session-reminder-note">Break reminders are adjustable in Settings.</p></div><div class="session-stat"><span>LAST 7 DAYS</span><strong id="session-week">—</strong></div><div class="session-stat"><span>RECORDED SESSIONS</span><strong id="session-recorded">—</strong></div><button class="tool-button" data-go="history">View history</button></article>
+</div></details>
+        <footer class="page-footer"><span>SLOTH CLIENT <b>•</b> MINECRAFT JAVA 1.21.11</span><span>UNOFFICIAL COMMUNITY SOFTWARE</span></footer>
+      <details class="settings-group" id="home-readiness"><summary><span id="home-readiness-label">Setup checks</span><small>Sloth checks files automatically when you play</small></summary><div class="settings-group-content">      <article class="panel readiness-panel"><div class="section-heading"><h2>READY TO PLAY</h2><button id="readiness-refresh" class="tool-button">Check setup</button><button class="tool-button" data-go="mods">Review mods</button></div><p id="readiness-status" role="status">Check your selected setup before launching.</p><div id="readiness-checks" class="readiness-grid"></div></article></div></details>
+</section>
+
+      <!-- INSTANCES -->
+      <section class="page" id="page-instances">
+        <div class="page-intro"><div class="eyebrow"><span></span> YOUR MINECRAFT WORLDS</div><h1>INSTANCE <em>LIBRARY</em></h1><p>Separate saves, settings, resource packs, screenshots and mod selections for each way you play.</p></div>
+        <div class="instance-toolbar panel"><div><div class="eyebrow muted">MINECRAFT 1.21.11 · FABRIC</div><p>Game files are shared to save disk space. Each instance keeps its own worlds and personal setup.</p></div><button class="save-button" id="instance-create">＋ NEW INSTANCE</button></div>
+        <div class="library-tools"><input id="instance-search" placeholder="Search your instances…" aria-label="Search instances"><label><input id="instance-favorites" type="checkbox"> Favourites only</label><button class="tool-button" id="instance-testing">Create mod-testing copy</button></div>
+        <p class="field-help">Testing copies include your worlds and settings. Player-added mod jars are renamed to .jar.disabled in the copy, ready for you to enable one at a time.</p>
+        <div class="instance-grid" id="instance-grid" aria-live="polite"></div>
+        <footer class="page-footer"><span>PRIVATE TO THIS COMPUTER <b>•</b> SEPARATE GAME DATA</span><span>SLOTH INSTANCE MANAGER</span></footer>
+      </section>
+
+      <section class="page toolbox-page" id="page-recovery" role="tabpanel" aria-labelledby="toolbox-tab-recovery">
+        <div class="page-intro"><div class="eyebrow"><span></span> ROOM TO EXPERIMENT</div><h1>RECOVERY <em>CENTER</em></h1><p>Save your setup before a big change. Restore it into a separate instance whenever you need a fresh start.</p></div>
+        <div class="recovery-hero panel"><div><div class="eyebrow muted">YOUR NEXT SAFETY NET</div><h2 id="recovery-instance">Current instance</h2><p>Includes worlds, mods, configurations, resource packs, shaders and game options. Close Minecraft before saving a restore point.</p><p>Stored locally on this computer. Copy the restore-points folder to another drive for protection against drive failure.</p></div><div class="recovery-create"><label class="field-label" for="recovery-label">NAME THIS MOMENT</label><input id="recovery-label" class="instance-name-input" maxlength="64" placeholder="Before adding new mods"><button class="save-button" id="recovery-save">＋ SAVE RESTORE POINT</button></div></div>
+        <div class="recovery-toolbar"><h2>YOUR RESTORE POINTS</h2><button class="tool-button" id="recovery-folder">Open backup folder</button><button class="tool-button" id="recovery-refresh">Refresh</button></div>
+        <p id="recovery-status" role="status" aria-live="polite"></p>
+        <div id="recovery-list" class="instance-grid"></div>
+        <div class="recovery-toolbar"><h2>LAUNCH INSIGHTS</h2><button class="tool-button" id="recovery-analyze">Analyze latest output</button><button class="tool-button" data-go="log">View Game Log</button></div>
+        <div id="recovery-insights" class="recovery-insights" aria-live="polite"></div>
+      </section>
+
+      <section class="page studio-page" id="page-workshop" role="tabpanel" aria-labelledby="studio-tab-workshop">
+        <div class="page-intro"><div class="eyebrow"><span></span> YOUR SETUP, UNDERSTOOD</div><h1>SETUP <em>STUDIO</em></h1><p>Choose a starting point, see what takes up space, and catch setup issues before your next session.</p></div>
+        <article class="panel care-section session-planner"><div class="section-heading"><h2>SESSION PLANNER</h2><button class="tool-button" id="session-refresh">Refresh</button></div><p class="field-help">Choose a starting layout or save your current setup. Profiles include HUD settings, Minecraft shortcuts and video options, managed mod choices and memory. Review each change before applying. Applies next launch; close Minecraft first. Modpack instances retain their own setup.</p><div class="session-fields"><label>Play style<select id="session-style"><option>Mining</option><option>PvP</option><option>Building</option><option>Casual</option></select></label><label>Saved setup<select id="session-profile"><option value="">Use play style</option></select></label><label>Accessibility<select id="session-accessibility"><option value="keep">Keep current</option><option value="readable">Readable text</option><option value="contrast">High contrast</option><option value="calm">Reduced effects</option></select></label></div><div class="update-page-actions"><button class="save-button" id="session-review">REVIEW SESSION</button><button class="tool-button" id="session-undo">Undo last plan</button></div><div class="session-fields"><label>New setup name<input type="text" id="session-name" maxlength="24" placeholder="My mining setup"></label><button class="tool-button" id="session-save">Save current setup</button><button class="tool-button" id="session-remove">Delete selected setup</button></div><div class="session-fields"><label>Compare setup<select id="session-compare-left" aria-label="First saved setup"></select></label><label>With setup<select id="session-compare-right" aria-label="Second saved setup"></select></label><button class="tool-button" id="session-compare">Compare saved setups</button></div><p id="session-status" role="status" aria-live="polite"></p></article><div class="studio-presets">
+          <article class="panel studio-preset"><span class="instance-badge current">COOLER &amp; QUIETER</span><h2>Quiet</h2><p>60 FPS with VSync, 8-chunk view distance, 5-chunk simulation and reduced particles. Performance mods stay enabled.</p><button class="save-button" data-preset="quiet">APPLY QUIET</button></article>
+          <article class="panel studio-preset"><span class="instance-badge current">EVERYDAY</span><h2>Balanced</h2><p>Enable the performance pack and restore the default extra-mod selections. Shader packs stay off.</p><button class="save-button" data-preset="balanced">APPLY BALANCED</button></article>
+          <article class="panel studio-preset"><span class="instance-badge current">LESS TO LOAD</span><h2>Performance</h2><p>Enable performance mods, disable optional extras and Iris, and leave shader packs off.</p><button class="save-button" data-preset="performance">APPLY PERFORMANCE</button></article>
+          <article class="panel studio-preset"><span class="instance-badge current">SHADER READY</span><h2>Visual</h2><p>Enable performance mods and Iris with more memory where available. Choose your shader in Minecraft.</p><button class="save-button" data-preset="visual">APPLY VISUAL</button></article>
+        </div>
+        <p class="field-help">Presets apply managed mods, memory and Minecraft video options. Balanced: 144 FPS / 12 chunks. Performance: 240 FPS / 8 chunks / minimal particles. Visual: 120 FPS / 16 chunks / Iris. Previous video options are backed up beside options.txt. FPS limits are targets, not guaranteed results. Player-added mods are preserved; modpacks keep their own configuration.</p>
+        <div class="recovery-toolbar"><h2>SETUP CHECKS &amp; STORAGE</h2><button class="tool-button" id="support-export">Preview support report</button><button class="tool-button" id="studio-refresh">Refresh scan</button></div>
+        <p class="field-help">Support reports include setup checks, storage totals, mod metadata and launch findings. Review the file before sharing. Account details and raw logs are excluded.</p>
+        <p id="studio-status" role="status" aria-live="polite"></p>
+        <div class="studio-checks" id="studio-checks"></div>
+        <div class="panel studio-storage"><div class="eyebrow muted">ACTIVE INSTANCE STORAGE</div><h2 id="studio-total">—</h2><div id="studio-storage"></div><p class="field-help">Gameplay folders only. Shared game downloads, restore points and linked folders are excluded.</p></div>
+      </section>
+
+      <section class="page download-page" id="page-mods" role="tabpanel" aria-labelledby="download-tab-mods">
+        <div class="page-intro compact"><div class="eyebrow"><span></span> YOUR INSTANCE</div><h1>MOD <em>MANAGER</em></h1><p>See every mod in your active instance. Disable your own mods without deleting them, inspect their file fingerprints, and spot common conflicts.</p></div>
+        <div class="panel studio-panel"><div class="section-heading"><h2 id="mods-summary">Loading mods…</h2><button class="tool-button" id="mods-import">Add local mods</button><button class="tool-button" id="mods-refresh">Refresh</button><button class="tool-button" data-folder="mods">Open folder</button></div><div class="browse-bar"><input type="search" id="mods-search" placeholder="Search name, ID or filename" aria-label="Search installed mods"><select id="mods-filter" aria-label="Filter installed mods"><option value="all">All mods</option><option value="personal">My mods</option><option value="enabled">Enabled</option><option value="disabled">Disabled</option><option value="issues">Needs attention</option><option value="managed">Launcher pack</option></select></div><p class="field-help" id="mods-note"></p><div id="mods-import-report" aria-live="polite"></div><div id="mods-results" aria-live="polite"></div></div>
+      </section>
+      <section class="page" id="page-history">
+        <div class="page-intro compact"><div class="eyebrow"><span></span> LOCAL JOURNAL</div><h1>LAUNCH <em>HISTORY</em></h1><p>Your last 100 Minecraft launches, saved on this computer. Keep the launcher open to record exit status and session length.</p></div>
+        <div class="panel studio-panel"><div class="section-heading"><h2>RECENT SESSIONS</h2><button class="tool-button" id="history-refresh">Refresh</button><button class="tool-button" data-go="recovery">Launch insights</button></div><p class="field-help">Interrupted means the launcher closed before an exit was recorded. Untracked means “close launcher on launch” was selected. Neither status confirms a game crash.</p><div id="history-results" aria-live="polite"></div></div><article class="panel care-section"><div class="section-heading"><h2>STARTUP TIMELINE</h2><button id="timeline-refresh" class="tool-button">Refresh timing</button></div><p class="field-help">Times setup checks, account renewal, file preparation and Minecraft startup locally. Startup completion is recorded when Sloth initializes its settings. Modpacks or an untracked launch may not provide that marker. Timings reflect this workload, cache and connection; they are not FPS measurements.</p><div id="startup-timeline" aria-live="polite"></div></article>
+      </section>
+
+      <!-- SLOTH CLIENT -->
+      <section class="page download-page" id="page-packs" role="tabpanel" aria-labelledby="download-tab-packs">
+        <div class="page-intro compact"><div class="eyebrow"><span></span> MODRINTH</div><h1>MODPACK <em>LIBRARY</em></h1><p>Discover your next adventure with Modrinth.</p></div>
+        <div class="panel studio-panel"><h2>FIND YOUR NEXT PACK</h2><p class="field-help">Install Fabric packs for Minecraft 1.21.11 in their own instances. Your existing Sloth setup stays separate.</p><button class="save-button" id="modrinth-packs-browse">BROWSE MODRINTH PACKS</button><button class="tool-button" id="modpack-local">Import .mrpack</button></div>
+      </section>
+
+      <section class="page" id="page-client">
+        <div class="page-intro"><div class="eyebrow"><span></span> CLIENT FEATURES</div><h1>SLOTH <em>CLIENT</em></h1><p>The Sloth Client Fabric mod, installed and kept up to date automatically. It works on any server.</p></div>
+        <div class="coming-banner panel" id="client-missing" hidden><div class="coming-icon">!</div><div><b>SLOTH CLIENT MOD NOT BUNDLED</b><p>This launcher build doesn't include the Sloth Client jar. Build it with <code>npm run build:mod</code>; until then the game launches with the performance mods only.</p></div></div>
+        <p class="field-help" id="pack-instance-note" hidden>This is a separate modpack instance. Sloth’s client and managed pack are excluded; manage this pack’s files in Mod Manager. These client selections apply to regular Sloth instances.</p>
+        <div class="feature-grid">
+          <article class="module-card panel"><span class="module-number">01</span><div class="module-symbol">⌗</div><h3>MOD MENU</h3><p>Press <kbd>Right Shift</kbd> for configurable modules with options, favourites and profiles.</p><span class="module-state">INCLUDED</span></article>
+          <article class="module-card panel"><span class="module-number">02</span><div class="module-symbol">⌘</div><h3>HUD EDITOR</h3><p>Drag and scale FPS, CPS, armour, keystrokes, the compass and every other HUD element.</p><span class="module-state">INCLUDED</span></article>
+          <article class="module-card panel"><span class="module-number">03</span><div class="module-symbol">◈</div><h3>SERVER VERSIONS</h3><p>ViaFabricPlus adds supported server versions. Pick a version, or Auto, with its button in Multiplayer.</p><span class="module-state">INCLUDED · ON BY DEFAULT</span></article>
+          <article class="module-card panel"><span class="module-number">04</span><div class="module-symbol">⊕</div><h3>ZOOM &amp; FREELOOK</h3><p>Hold <kbd>C</kbd> to zoom (scroll to adjust) and <kbd>Left Alt</kbd> to look around.</p><span class="module-state">INCLUDED</span></article>
+        </div>
+
+        <div class="section-heading"><div><div class="eyebrow muted">PERFORMANCE PACK</div><h2>MODS INSTALLED WITH THE GAME</h2></div><span class="section-note">Changes apply the next time you press Play.</span></div>
+        <div class="mod-list panel" id="mod-list"></div>
+        <div class="coming-banner panel user-mods" id="user-mods" hidden>
+          <div class="coming-icon">!</div>
+          <div><b>MODS YOU ADDED YOURSELF</b><p>Mods run with full access to your PC and your game session. Sloth Client leaves these alone and can't vouch for them, so only keep mods from sources you trust.</p><p class="user-mod-names" id="user-mod-names"></p></div>
+          <button class="tool-button" data-folder="mods">Open mods folder</button>
+        </div>
+        <footer class="page-footer"><span>ORIGINAL SLOTH FEATURES <b>•</b> MODS FROM MODRINTH, HASH-PINNED</span><span>UNOFFICIAL COMMUNITY SOFTWARE</span></footer>
+      </section>
+
+      <!-- BROWSE -->
+      <section class="page download-page" id="page-browse" role="tabpanel" aria-labelledby="download-tab-browse">
+        <div class="browse-toolbar">
+          <div class="browse-search-group">
+            <details id="browse-type-menu" class="browse-type-menu"><summary><span id="browse-type-label">Mods</span><span aria-hidden="true">⌄</span></summary><div class="browse-type-options" aria-label="Content type"><button type="button" data-browse-type="mod">Mods <span>✓</span></button><button type="button" data-browse-type="modpack">Modpacks <span></span></button><button type="button" data-browse-type="resourcepack">Resource Packs <span></span></button><button type="button" data-browse-type="shader">Shaders <span></span></button><button type="button" data-browse-type="datapack">Data Packs <span></span></button></div></details>
+            <select id="browse-type" aria-label="Content type" hidden><option value="mod">Mods</option><option value="modpack">Modpacks</option><option value="resourcepack">Resource Packs</option><option value="shader">Shaders</option><option value="datapack">Data Packs</option></select>
+            <span class="browse-search-mark" aria-hidden="true">⌕</span><input id="browse-query" type="search" placeholder="Search Modrinth…" spellcheck="false" aria-label="Search Modrinth">
+          </div>
+          <select id="browse-sort" aria-label="Sort"><option value="relevance">Relevance</option><option value="downloads" selected>Popularity</option><option value="follows">Follows</option><option value="newest">Newest</option><option value="updated">Updated</option></select>
+          <div class="browse-providers"><span class="browse-provider-active">Modrinth</span></div>
+        </div>
+        <div class="browse-layout">
+          <div class="browse-main">
+            <p id="browse-content-note" class="field-help" role="status"></p>
+            <div id="browse-results" class="browse-results" aria-live="polite"></div>
+            <div class="browse-more"><button class="tool-button" id="browse-more" hidden>Load more</button></div>
+          </div>
+          <aside class="browse-filters">
+            <div class="browse-filter-heading">Categories</div>
+            <div id="browse-categories" class="chip-grid"></div>
+            <button type="button" class="tool-button browse-category-toggle" id="browse-category-toggle" hidden>View more</button>
+            <div class="browse-filter-heading filter-gap">Compatibility</div><div class="chip-grid"><span class="browse-fixed-filter" id="browse-loader-label">Fabric</span><span class="browse-fixed-filter">Client</span></div>
+            <div class="browse-filter-heading filter-gap">Game version</div><div class="chip-grid"><span class="browse-fixed-filter" id="browse-version-label">1.21.11</span></div>
+            <button class="tool-button browse-installed" id="browse-installed-toggle">Installed content</button>
+            <p class="filter-note dim">Downloads are checked against Modrinth's SHA-512. Mods run with access to your PC.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SCREENSHOTS -->
+      <section class="page" id="page-shots">
+        <div class="page-intro compact"><div class="eyebrow"><span></span> YOUR CAPTURES</div><h1>SCREEN<em>SHOTS</em></h1><p>Press F2 in game to take one. Newest first.</p></div>
+        <div class="log-toolbar"><button class="tool-button" id="shots-refresh">Refresh</button><button class="tool-button" data-folder="screenshots">Open folder</button></div>
+        <div class="browse-bar"><input type="search" id="shots-query" placeholder="Search screenshot filenames" aria-label="Search screenshots"><input type="date" id="shots-date" aria-label="Screenshot date"><select id="shots-sort" aria-label="Screenshot sorting"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="name">Filename</option></select></div><p id="shots-count" class="field-help" role="status"></p>
+        <div class="browse-bar"><label for="shots-album-filter">LOCAL ALBUM</label><select id="shots-album-filter"><option value="">All albums</option></select><p class="field-help">Albums label your original files without moving them. Crop and annotate with Edit; originals are preserved.</p></div>
+        <div id="shots-grid" class="shots-grid"></div>
+        <dialog id="shot-album-dialog" class="capture-dialog album-dialog" aria-labelledby="shot-album-title"><div class="capture-heading"><h2 id="shot-album-title">ORGANIZE CAPTURE</h2></div><p id="shot-album-file" class="field-help"></p><label for="shot-album-name">Album name</label><input id="shot-album-name" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Sloth builds"><p class="field-help">Use letters, numbers, spaces, - or _. Leave blank to remove the label. Your file stays in place.</p><p id="shot-album-status" role="status" aria-live="polite"></p><div class="capture-toolbar"><button class="save-button" id="shot-album-save">SAVE ALBUM LABEL</button><button class="tool-button" id="shot-album-cancel">Cancel</button></div></dialog>
+        <dialog id="shot-editor" class="capture-dialog"><div class="capture-heading"><h2>CAPTURE WORKSPACE</h2><button class="tool-button" id="shot-editor-close">Close</button></div><p id="shot-editor-title" class="field-help"></p><div class="capture-toolbar"><label>Tool <select id="shot-edit-tool"><option value="crop">Crop</option><option value="pen">Draw</option><option value="text">Text</option></select></label><label>Color <input type="color" id="shot-edit-color" value="#ff58aa"></label><label>Width <input type="number" id="shot-edit-width" min="1" max="32" value="4"></label><label>Annotation <input type="text" id="shot-edit-text" maxlength="120" placeholder="Text to place on the image"></label><button class="tool-button" id="shot-edit-crop">Apply crop</button><button class="tool-button" id="shot-edit-undo">Undo</button><button class="tool-button" id="shot-edit-reset">Reset</button><button class="save-button" id="shot-edit-save">SAVE A NEW COPY</button></div><div class="capture-toolbar capture-crop-fields"><span class="field-help">Crop rectangle (pixels)</span><label>X <input id="shot-crop-x" type="number" min="0" value="0"></label><label>Y <input id="shot-crop-y" type="number" min="0" value="0"></label><label>Width <input id="shot-crop-w" type="number" min="2" value="2"></label><label>Height <input id="shot-crop-h" type="number" min="2" value="2"></label><button class="tool-button" id="shot-crop-select">Select rectangle</button></div><div class="capture-canvas-wrap"><canvas id="shot-edit-canvas" aria-label="Screenshot editing canvas"></canvas></div><p id="shot-edit-status" class="field-help" role="status">Drag to select a crop. Saved edits create a new PNG.</p></dialog>
+      </section>
+
+      <section class="page download-page" id="page-saved" role="tabpanel" aria-labelledby="download-tab-saved"><div class="page-intro compact"><div class="eyebrow"><span></span> YOUR SHORTLIST</div><h1>SAVED <em>PROJECTS</em></h1><p>Keep a shortlist of mods, resource packs and shaders. Saved projects are ready when you want to install them.</p></div><div class="browse-bar"><input type="search" id="saved-query" placeholder="Search saved projects" aria-label="Search saved projects"><select id="saved-type" aria-label="Saved project type"><option value="all">All projects</option><option value="mod">Mods</option><option value="resourcepack">Resource packs</option><option value="shader">Shaders</option></select></div><p class="field-help">Saved locally on this computer. Installing checks for a compatible build for your active instance. A saved listing does not download or enable anything.</p><div id="saved-results" aria-live="polite"></div></section>
+      <section class="page download-page" id="page-downloads" role="tabpanel" aria-labelledby="download-tab-downloads"><div class="page-intro"><div class="eyebrow"><span></span> YOUR FILE ACTIVITY</div><h1>DOWNLOAD <em>ACTIVITY</em></h1><p>Verified game, runtime, mod and pack downloads from this launcher session.</p></div><div class="download-summary panel" id="download-summary"></div><div class="browse-bar"><input type="search" id="download-query" placeholder="Search filenames" aria-label="Search downloads"><select id="download-filter" aria-label="Download status"><option value="all">All activity</option><option value="active">Active</option><option value="failed">Failed</option><option value="completed">Completed</option></select><button class="tool-button" id="download-refresh">Refresh</button></div><p class="field-help">Active jobs and the last 100 finished jobs are shown. Retrying restores that file; return to the original install/launch action to finish the full operation. Close Minecraft before retrying a failed file. Launcher self-updates appear in Update Launcher.</p><div id="download-list" aria-live="polite"></div></section>
+      <section class="page toolbox-page" id="page-toolbox" role="tabpanel" aria-labelledby="toolbox-tab-toolbox"><div class="page-intro"><div class="eyebrow"><span></span> NEED A HAND?</div><h1>HELP & <em>UPDATES</em></h1><p>Fix a problem, restore a backup or update the client.</p></div><p class="toolbox-status" id="tools-status" role="status" aria-live="polite"></p><div class="simple-help-grid"><button class="tool-button" data-go="care">Fix a game problem</button><button class="tool-button" data-go="recovery">Backups & recovery</button><button class="tool-button" data-go="updates">Update Sloth Client</button><button class="tool-button" data-go="log">Game log <span class="nav-dot" id="log-dot" hidden></span></button></div>
+<details class="settings-group"><summary><span>More tools</span><small>Advanced maintenance and saved setups</small></summary><div class="settings-group-content"><div class="simple-help-grid"><button class="tool-button" data-go="client">Performance mods</button><button class="tool-button" data-go="workshop">Saved setups</button><button class="tool-button" data-go="history">Launch history</button><button class="tool-button" data-go="experience">Extra client tools</button><button class="tool-button" data-go="trust">Security details</button></div>
+        <div class="panel care-section"><div class="section-heading"><h2>COMPARE INSTANCES</h2></div><p class="field-help">Compare launch settings and file fingerprints for mods, packs and configuration. Close Minecraft first. Up to 10,000 files / 4 GB per instance; file contents stay local. Worlds, screenshots and account files are excluded. Differences do not establish compatibility.</p><div class="browse-toolbar"><select id="compare-left" aria-label="Left instance"></select><select id="compare-right" aria-label="Right instance"></select><button class="tool-button" id="compare-run">Compare setups</button><input id="compare-query" placeholder="Filter differences" aria-label="Filter comparison"></div><p id="compare-summary" role="status"></p><div id="compare-results"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>INSTANCE NOTES &amp; TAGS</h2></div><label class="field-label" for="notes-instance">INSTANCE</label><select id="notes-instance"></select><label class="field-label" for="instance-tags">TAGS · COMMA SEPARATED</label><input id="instance-tags" maxlength="220" placeholder="Survival, PvP, Testing"><label class="field-label" for="instance-notes">YOUR NOTES</label><textarea id="instance-notes" maxlength="2000" rows="4" placeholder="What this setup is for, which mods you changed, or what to try next"></textarea><button class="save-button" id="notes-save">SAVE NOTES &amp; TAGS</button><p class="field-help">Up to eight tags, 24 characters each. Search in Instances includes names, tags and notes. Notes are local and are not included in portable archives.</p></div>
+        <div class="panel care-section"><div class="section-heading"><h2>REVIEW MOD UPDATES</h2><button class="tool-button" id="mod-updates-review">Check compatible updates</button><button class="save-button" id="mod-updates-apply" disabled>APPLY SELECTED</button></div><p class="field-help">Reviews up to 50 enabled, tracked Modrinth mods. Local jars and the managed Sloth pack need separate updates. Versions are checked against this Minecraft release and Fabric; Fabric resolves remaining runtime dependencies. Read the notes and select updates. A full restore point is required before changes; dependencies may also be installed.</p><div id="mod-updates-list" aria-live="polite"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>PERSONAL INSTANCE TRANSFER</h2></div><p class="field-help">Export a Sloth ZIP and import it as a new instance on another computer running the same Minecraft version. Files receive integrity checks. Archives may contain executable mods and private configuration; choose files you trust and use personal copies.</p><div class="transfer-choices"><label><input type="checkbox" data-transfer="mods" checked> Mods</label><label><input type="checkbox" data-transfer="resourcepacks" checked> Resource packs</label><label><input type="checkbox" data-transfer="shaderpacks" checked> Shaders</label><label><input type="checkbox" data-transfer="saves"> Worlds</label><label><input type="checkbox" data-transfer="screenshots"> Screenshots</label><label><input type="checkbox" data-transfer="config"> Mod configuration &amp; scripts</label></div><p class="field-help">Minecraft options and launch settings are included. Account files and raw logs are excluded; known credential filenames are skipped. Configuration is optional because it can contain private connection details. Limits: 3.8 GB total, 512 MB per file, 65,000 files. Keep other Minecraft clients closed.</p><div class="update-page-actions"><button class="save-button" id="portable-export">EXPORT ACTIVE INSTANCE</button><button class="tool-button" id="portable-import">IMPORT AS NEW INSTANCE</button></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>STORAGE CLEANUP PREVIEW</h2><button class="tool-button" id="cleanup-scan">Find temporary files</button><button class="tool-button" id="cleanup-all">Select all candidates</button><button class="save-button" id="cleanup-run" disabled>MOVE SELECTED TO RECYCLE BIN</button></div><p class="field-help">Lists interrupted download fragments and staging files older than 24 hours. Worlds, screenshots, normal installed game files and restore points are excluded. Each selected file is checked again before removal. The scan does not remove anything.</p><div id="cleanup-list" aria-live="polite"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>CONNECTION DIAGNOSTICS</h2><button class="tool-button" id="connection-check">Run checks</button></div><p class="field-help">Checks public Microsoft sign-in, Minecraft metadata and Modrinth endpoints. No account tokens or API keys are sent. Results show DNS/HTTPS access and response time; a reachable endpoint does not prove your account can sign in.</p><div id="connection-results" aria-live="polite"></div></div>
+      </div></details></section>
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div class="eyebrow"><span></span> PERSONALIZE</div><h1>LAUNCHER <em>SETTINGS</em></h1><p>These preferences stay on this computer.</p></div>
+        <div class="settings-layout">
+          <div class="settings-main panel">
+            <div class="settings-title"><div><h2>YOUR SETTINGS</h2><p>A few everyday controls. The rest is here when you need it.</p></div><span class="settings-icon">⚙</span></div>
+            <p class="field-help" id="instance-launch-note">Memory, window size, launch behavior and reminders are saved separately for each instance. Account, Java, accent and backup policy are shared.</p>
+            <p class="settings-guidance">Start with game setup. Open a section below only when you need it.</p>
+            <div class="settings-essentials"><h3>GAME SETUP</h3>            <label class="field-label" for="memory">MEMORY ALLOCATION</label>
+            <div class="range-row"><input id="memory" type="range" min="2048" max="8192" step="512" value="4096"><b id="memory-value">4 GB</b></div>
+            <div class="field-help" id="memory-help">4 GB is plenty with the performance pack.</div>
+
+
+            <div class="form-divider"></div>
+            <label class="field-label" for="on-launch">WHEN THE GAME STARTS</label>
+            <select id="on-launch">
+              <option value="minimize">Minimize the launcher</option>
+              <option value="keep">Keep the launcher open</option>
+              <option value="close">Close the launcher</option>
+            </select>
+            <div class="form-divider"></div>
+            <div class="field-help">Play opens Minecraft. Choose your own worlds and multiplayer servers in game.</div>
+            <div class="form-divider"></div>
+            <label class="field-label">GAME WINDOW SIZE</label>
+            <div class="field-row">
+              <select id="resolution-mode" class="compact"><option value="default">Game default</option><option value="custom">Custom size</option></select>
+              <input id="res-width" class="num-input" type="number" min="640" max="7680" placeholder="1920" disabled><span class="field-colon">×</span><input id="res-height" class="num-input" type="number" min="480" max="4320" placeholder="1080" disabled>
+            </div>
+
+            <div class="form-divider"></div>
+</div>
+            <details class="settings-group"><summary><span>Appearance</span><small>Accent and optional seasonal effects</small></summary><div class="settings-group-content">            <label class="field-label">ACCENT COLOUR</label>
+            <div class="accent-row" id="accent-row" role="radiogroup" aria-label="Accent colour">
+              <button type="button" class="accent-swatch" data-accent="pink" role="radio"><i></i>Pink</button>
+              <button type="button" class="accent-swatch" data-accent="violet" role="radio"><i></i>Violet</button>
+              <button type="button" class="accent-swatch" data-accent="ocean" role="radio"><i></i>Ocean</button>
+              <button type="button" class="accent-swatch" data-accent="ember" role="radio"><i></i>Ember</button>
+            </div>
+            <div class="field-help">Colours the launcher and the Sloth Client menus in game.</div>            <div class="holiday-picker"><div class="section-heading"><h2>HOLIDAY THEMES</h2><input id="holiday-search" type="search" placeholder="Find a holiday" aria-label="Find a holiday theme"></div><p id="holiday-description" class="field-help"></p><div id="holiday-themes" class="holiday-theme-grid" aria-label="Holiday theme choices"></div>            <label class="seasonal-toggle seasonal-effects-toggle" for="halloween-animations"><input id="halloween-animations" type="checkbox"><span><b>ANIMATED SEASONAL EFFECTS</b><small>Gentle themed artwork movement, plus Halloween creatures when selected. Reduced motion takes priority.</small></span></label><p class="field-help">Choose any theme whenever you like. Changes apply to the launcher and stay saved.</p></div><details class="settings-group"><summary><span>Halloween effects</span><small>Theme, animation and jumpscares</small></summary><div class="settings-group-content">            <label class="seasonal-toggle" for="halloween-theme"><input id="halloween-theme" type="checkbox"><span><b>HALLOWEEN THEME</b><small>Pumpkin orange, midnight violet, moonlight and jack-o'-lanterns.</small></span></label>
+            <p class="field-help">Applies immediately to the launcher and stays saved. Turn it off to restore your selected accent. Minecraft keeps its own appearance.</p>
+            <label class="seasonal-intensity" for="halloween-intensity"><span><b>ATMOSPHERE INTENSITY</b><small>Choose a subtle mood, a haunted atmosphere or stronger nightmare effects. Mist stays low and light. Jumpscares are available separately in Haunted and Nightmare.</small></span><select id="halloween-intensity"><option value="subtle">Subtle</option><option value="haunted">Haunted</option><option value="nightmare">Nightmare</option></select></label>
+
+            <label class="seasonal-toggle seasonal-effects-toggle" for="halloween-jumpscares"><input id="halloween-jumpscares" type="checkbox"><span><b>HAUNTED JUMPSCARES</b><small>Minecraft Halloween creature previews and optional scares on Play. Off by default; no sound or flashing. Requires Haunted or Nightmare and animated effects. Reduced motion takes priority.</small></span></label>
+<button id="halloween-scare-preview" class="tool-button" type="button">Preview next jumpscare</button></div></details>
+</div></details>
+            <details class="settings-group"><summary><span>Accessibility & reminders</span><small>Text size, motion, contrast and breaks</small></summary><div class="settings-group-content">            <div class="accessibility-controls"><h3>ACCESSIBILITY</h3><label class="field-label" for="text-scale">LAUNCHER TEXT SIZE</label><select id="text-scale"><option value="1">Standard</option><option value="1.15">Larger</option><option value="1.3">Very large · 130%</option><option value="1.5">Extra large · 150%</option></select><label><input type="checkbox" id="reduce-motion"> Reduce animation and motion</label><label><input type="checkbox" id="high-contrast"> Higher contrast</label><p class="field-help">Saved with the settings below. Keyboard: Ctrl+K commands · Ctrl+1 Home · Ctrl+2 Instances · Ctrl+3 Mod Manager · Ctrl+4 Downloads · Ctrl+, Settings. Operating-system reduced-motion preferences are respected.</p></div>            <label class="field-label" for="session-reminder">BREAK REMINDERS</label><select id="session-reminder"><option value="0">Off</option><option value="30">Every 30 minutes</option><option value="45">Every 45 minutes</option><option value="60">Every hour</option><option value="90">Every 90 minutes</option><option value="120">Every 2 hours</option></select><p class="field-help">A quiet reminder while Sloth is open or minimized. It never stops your game. Closing the launcher disables reminders and live session timing.</p></div></details>
+            <details class="advanced">
+              <summary>Advanced · Java & sign-in</summary>
+              <label class="field-label" for="java-path">JAVA EXECUTABLE</label>
+              <div class="field-row"><input id="java-path" readonly placeholder="Bundled Java 21 (recommended)" spellcheck="false"><button class="tool-button" id="choose-java" type="button">Choose…</button><button class="tool-button" id="clear-java" type="button">Use bundled</button></div>
+
+              <label class="field-label" for="auth-mode">MICROSOFT SIGN-IN APP</label>
+              <div class="field-row"><select id="auth-mode" class="compact"><option value="live">Default (community client ID)</option><option value="azure">My own Azure app</option></select><input id="auth-client" maxlength="36" spellcheck="false" placeholder="Azure client ID"></div>
+              <div class="field-help">Accounts signed in with one app stay tied to it. Changing this asks you to sign in again.</div>
+            </details>
+
+            <div class="settings-actions"><span id="save-state">Changes are saved on this PC.</span><button class="save-button" id="save-settings">SAVE SETTINGS <span>→</span></button></div>
+          </div>
+          <aside class="settings-side">
+            <details class="side-note panel settings-group"><summary><span>Maintenance</span><small>Folders, repair and updates</small></summary><div class="settings-group-content">
+              <div class="tool-list">
+                <button class="tool-button" data-folder="game">Open game folder</button>
+                <button class="tool-button" data-folder="mods">Open mods folder</button>
+                <button class="tool-button" data-folder="screenshots">Open screenshots</button>
+                <button class="tool-button" id="repair">Repair game files</button>
+                <button class="tool-button" id="check-update">Check for launcher updates</button>
+              </div>
+              <p class="tool-note" id="update-status">Launcher updates install automatically.</p>
+            </div></details>
+            <details class="side-note panel settings-group" id="import-card"><summary>Import from another launcher</summary><div class="settings-group-content">
+              <div class="eyebrow muted">IMPORT FROM ANOTHER LAUNCHER</div>
+              <p>Bring over screenshots, resource packs, shaders, worlds and your mods (re-downloaded for 1.21.11) from Lunar Client, Prism, the Minecraft Launcher or a zip.</p>
+              <select id="import-source" aria-label="Import source"><option value="">Detected launchers...</option></select>
+              <div class="tool-row"><button class="tool-button" id="import-folder">Choose folder…</button><button class="tool-button" id="import-zip">Choose .zip…</button></div>
+              <div id="import-scan" hidden></div>
+              <p class="tool-note" id="import-status"></p>
+            </div></details>
+            <details class="side-note panel settings-group"><summary><span>Privacy & about</span><small>Microsoft sign-in and local preferences</small></summary><div class="settings-group-content"><p>You sign in on microsoft.com in your own browser. Tokens are encrypted with Windows' data protection (DPAPI), only ever sent to Microsoft and Mojang, and kept out of logs, crash reports and the game's command line.</p><p>Sloth Client is unofficial community software. Not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang Synergies AB.</p></div></details>
+          </aside>
+        </div>
+        <footer class="page-footer"><span>LOCAL SETTINGS <b>•</b> STORED IN APP DATA</span><span>UNOFFICIAL COMMUNITY SOFTWARE</span></footer>
+      </section>
+
+      <section class="page" id="page-appearance">
+        <div class="page-intro"><div class="eyebrow"><span></span> YOUR MINECRAFT IDENTITY</div><h1>ACCOUNT <em>APPEARANCE</em></h1><p>Your skin, owned Minecraft capes and saved loadouts in one place.</p></div>
+        <div class="panel care-section"><div class="section-heading"><h2 id="appearance-account">SELECT AN ACCOUNT</h2><button class="tool-button" id="appearance-refresh">Refresh account</button></div><p class="field-help">Use the account selector in the sidebar. Applying a skin or an owned cape changes that Minecraft account everywhere, across launchers and servers. Local Capes only change your own view inside Sloth. Close Minecraft before applying changes; viewing and refreshing the skin works while playing. Saved loadouts stay on this computer. Online cape selection requires authenticated ownership.</p><p id="appearance-status" role="status" aria-live="polite">Refresh to load your profile.</p></div>
+        <div class="appearance-layout"><div class="panel care-section appearance-preview"><h2>CURRENT APPEARANCE</h2><div id="appearance-current"></div><div id="appearance-equipped-cape"></div><p id="appearance-current-detail" class="field-help"></p><button class="tool-button" id="appearance-capture">Use displayed skin in a loadout</button></div>
+        <div class="panel care-section"><h2>CREATE A LOADOUT</h2><p class="field-help">Import a 64×64 or legacy 64×32 PNG. Saving does not change your online account. Choose the arm model explicitly.</p><button class="tool-button" id="appearance-import">Choose skin PNG</button><div id="appearance-draft"></div><label class="field-label" for="appearance-name">LOADOUT NAME</label><input id="appearance-name" maxlength="40" placeholder="Survival, PvP, Weekend"><label class="field-label" for="appearance-model">ARM MODEL</label><select id="appearance-model"><option value="classic">Classic · wide arms</option><option value="slim">Slim · narrow arms</option></select><label class="field-label" for="appearance-loadout-cape">CAPE WITH THIS LOADOUT</label><select id="appearance-loadout-cape"><option value="keep">Keep current cape</option><option value="">Hide cape</option></select><button class="save-button" id="appearance-save">SAVE LOADOUT</button></div></div>
+        <div class="panel care-section local-cape-section"><div class="section-heading"><h2>LOCAL CAPES</h2><span class="instance-badge">ONLY YOU SEE THESE</span><input id="local-cape-query" placeholder="Find Founder’s, Minecon, Cherry…" aria-label="Search local capes"></div><p class="field-help">A collection of 48 Minecraft cape designs for your own avatar in Sloth. No ownership unlocks or online account changes. Other players see your real account cape. Selections are saved per account and game profile and apply on your next launch. Standalone modpacks without Sloth’s client mod do not support this feature. Minecraft’s Cape skin setting must be enabled.</p><div class="local-cape-toolbar"><button class="tool-button" id="local-cape-account">Use my real account cape</button><span id="local-cape-selection" class="field-help"></span></div><p id="local-cape-status" role="status" aria-live="polite">Select an account to browse the collection.</p><div class="appearance-capes local-cape-grid" id="local-capes"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>OWNED MINECRAFT CAPES · ONLINE ACCOUNT</h2><span id="appearance-cape-count" class="instance-badge"></span><button class="tool-button" id="appearance-reauth">Sign in again to refresh cape access</button></div><p class="field-help">These choices update your real Minecraft account. A Local Capes selection overrides your own view until you choose “Use my real account cape” above.</p><div class="appearance-capes" id="appearance-capes"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>SAVED SKIN LOADOUTS</h2><input id="appearance-query" placeholder="Find a loadout" aria-label="Search skin loadouts"></div><p class="field-help">Up to 30 loadouts per account. Apply only after reviewing the skin, arm model and cape choice. Removing a saved loadout does not change your online skin.</p><div class="instance-grid" id="appearance-loadouts"></div></div>
+      </section>
+
+      <section class="page toolbox-page" id="page-care" role="tabpanel" aria-labelledby="toolbox-tab-care">
+        <div class="panel care-section"><div class="section-heading"><h2>CRASH ASSISTANT</h2><button class="tool-button" id="crash-review">Review latest output</button></div><p class="field-help">Reads captured output for the active instance, or its newest normal Minecraft log or crash report. Matched clues cover certificate, native-library, graphics, account, memory, mod and pack failures. They suggest next steps; they do not prove the root cause. No raw log is uploaded. An older log may describe a previous launch.</p><p id="crash-status" role="status"></p><div id="crash-results"></div></div>
+        <div class="page-intro"><div class="eyebrow"><span></span> CONFIDENCE BEFORE PLAY</div><h1>GAME <em>CARE</em></h1><p>Understand your setup, repair managed files, and keep your worlds protected.</p></div>
+        <div class="panel care-section"><div class="section-heading"><h2>PRE-LAUNCH HEALTH</h2><button class="tool-button" id="care-scan">Scan setup</button><button class="save-button" id="care-repair">REPAIR GAME FILES</button></div><p class="field-help">Every launch checks Java, storage, mod metadata and selected resource packs. Recognized fatal problems pause launch. Repair verifies hashes and restores managed downloads without starting Minecraft; your setup is saved first. It does not fix arbitrary player-added mods or texture-pack content.</p><p id="care-status" role="status" aria-live="polite"></p><div class="care-checks" id="care-checks"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>RESOURCE PACKS</h2><button class="tool-button" id="care-packs-refresh">Refresh</button><button class="tool-button" data-folder="resourcepacks">Open folder</button></div><p class="field-help">Close Minecraft before changing selection. Packs later in the selected list have higher priority. Changes apply next launch. Original pack files are preserved.</p><div id="care-packs" aria-live="polite"></div></div><div class="panel care-section"><div class="section-heading"><h2>RESOURCE FILE INSPECTOR</h2></div><p class="field-help">Find which selected pack supplies a font or texture file. Later selected packs take priority.</p><div class="browse-bar"><input id="pack-asset-path" aria-label="Resource file path" value="assets/minecraft/font/default.json" maxlength="240"><button class="tool-button" id="pack-asset-inspect">Inspect file</button><button class="tool-button" id="pack-asset-font">Default font</button><button class="tool-button" id="pack-asset-tool">Diamond pickaxe</button></div><div id="pack-asset-result" role="status" aria-live="polite"></div></div>
+        <div class="panel care-section"><div class="section-heading"><h2>AUTOMATIC WORLD BACKUPS</h2><button class="tool-button" data-go="recovery">Restore a backup</button></div><p class="field-help">Checks run every 15 minutes while Sloth is open, before launch and after a tracked session ends. Backups wait until Minecraft is closed. Only worlds are included; use Recovery for a full setup copy. Keep all other Minecraft clients closed too. Manual restore points are never deleted by automatic retention.</p><div class="backup-controls"><label><input type="checkbox" id="backup-enabled"> Enable automatic backups</label><label>Interval <select id="backup-interval"><option value="1">Every hour</option><option value="6">Every 6 hours</option><option value="24">Daily</option><option value="168">Weekly</option></select></label><label>Copies per instance <input type="number" id="backup-keep" min="1" max="50" value="10"></label><label>Total automatic storage (GB) <input type="number" id="backup-limit" min="1" max="100" value="8"></label></div><div class="update-page-actions"><button class="save-button" id="backup-save">SAVE BACKUP SETTINGS</button><button class="tool-button" id="backup-now">BACK UP WORLDS NOW</button></div><p id="backup-status" role="status" aria-live="polite"></p><p class="field-help">Stored on this computer. Copy backups to another drive for protection against drive failure. The limit covers completed automatic backups; temporary copies need additional free space.</p></div>
+      </section>
+      <section class="page studio-page" id="page-experience" role="tabpanel" aria-labelledby="studio-tab-experience">
+        <div class="page-intro"><div class="eyebrow"><span></span> YOUR PLAY STYLE</div><h1>CLIENT <em>STUDIO</em></h1><p>A connected workspace for the way you play, create and customize.</p></div>
+        <article class="panel care-section"><div class="section-heading"><h2>PRECISION TOOLS</h2><span class="instance-badge">F8 / F9</span></div><div class="experience-cards"><div><b>Live HUD inspector</b><p>Change size, placement and colors beside the actual HUD preview. Choose Compact or Comfortable spacing under Interface and layout.</p></div><div><b>Pinned quick controls</b><p>Pin up to eight modules and open the small toolbar with F9. Find shared keys in Keybind conflicts. Bind hold-to-quiet and hold-to-clean overrides in Controls.</p></div><div><b>Local performance workspace</b><p>Save samples, compare timing and configuration, choose a frame budget, and arm a bounded stutter recorder. What changed? links directly to affected settings.</p></div><div><b>Controlled UI addons</b><p>Declarative v1 manifests can open approved client tools. Permissions are explicit; changed files require fresh approval. Disable all addons is always available.</p></div></div><p class="field-help">Distraction-free mode hides your selected HUDs temporarily. It ends when you leave the game. Startup explanation shows the mods Fabric actually loaded.</p></article>
+        <article class="panel care-section"><div class="section-heading"><h2>IN-GAME STUDIO</h2><span class="instance-badge">F8</span></div><p class="field-help">Launch a Sloth client instance, then press F8. You can rebind it under Settings → Controls. Your first Right Shift menu opening offers starter layouts; keeping your existing setup is one click.</p><div class="experience-cards"><div><b>Choose your play style</b><p>Preview Multiplayer, PvP, Survival or Building HUD layouts before applying. Fine-tune the result in the HUD editor.</p></div><div><b>Find any client tool</b><p>Search modules, their individual settings, Minecraft options and Sloth keybinds. Jump straight to the matching control.</p></div><div><b>Understand performance</b><p>View recent gameplay frame intervals, memory use and reported latency. Get practical suggestions based on what Sloth observes.</p></div><div><b>Keep control of changes</b><p>Restore up to 24 recent setups. Associate a saved profile with a server and get your previous setup back when you leave.</p></div></div></article>
+        <article class="panel care-section"><div class="section-heading"><h2>OPTIONAL PREFERENCE SYNC</h2><button class="tool-button" id="sync-choose">Choose folder</button><button class="tool-button" id="sync-disable">Disconnect folder</button></div><p class="field-help">Choose a folder managed by OneDrive, Dropbox or your own file service on each computer. Sloth publishes a small preference file only when you ask. Your provider handles delivery; Sloth does not host a cloud service. Close all Minecraft clients before importing or publishing.</p><p id="sync-folder" class="field-help">No sync folder selected.</p><div class="backup-controls"><label><input type="checkbox" id="sync-hud" checked> HUD layouts and display options</label><label><input type="checkbox" id="sync-visual"> Menu, camera, crosshair and sound options</label><label><input type="checkbox" id="sync-profiles" checked> Named profiles (up to 30)</label><label><input type="checkbox" id="sync-launcher" checked> Launcher accent and accessibility</label></div><p class="field-help">Accounts, login tokens, skins, capes, hotkey text, commands, server associations, video options, mods and worlds are excluded. Profile names are included when selected. Existing profile names are skipped on import. Use with your own preferences; numeric and choice values are validated again by the client.</p><div class="update-page-actions"><button class="save-button" id="sync-publish">PUBLISH SELECTED PREFERENCES</button><button class="tool-button" id="sync-review">REVIEW IMPORT</button><button class="save-button" id="sync-apply" disabled>IMPORT REVIEWED PREFERENCES</button><button class="tool-button" id="sync-restore">Restore previous module setup</button></div><div id="sync-review-result" class="field-help"></div><p id="sync-status" role="status" aria-live="polite">Sync is off until you choose a folder. Imports apply on the next game launch.</p></article>
+        <article class="panel care-section"><div class="section-heading"><h2>CAPTURE STUDIO</h2><button class="tool-button" data-go="shots">Screenshot library</button><button class="tool-button" id="capture-replays">Open recordings</button></div><p class="field-help">In game: F8 → Capture studio. Start photo mode to hide the HUD, adjust FOV and cycle vanilla viewpoints. Close Studio to frame your shot and press F2. F8 brings the controls back. End photo mode to restore your previous FOV, HUD and viewpoint. Composition guides appear in captures—turn them off for a clean shot. Photo mode does not freeze multiplayer or provide freecam.</p><label><input type="checkbox" id="capture-replay-enabled"> Enable the bundled compatible Replay Mod for this instance</label><p class="field-help">Changes apply next launch. Replay Mod provides recording, timeline and camera editing through its own screens. Sloth links your screenshot library and recording folder; it does not replace the replay editor. Sloth client instances only.</p></article>
+      </section>
+      <section class="page" id="page-updates">
+        <div class="page-intro"><div class="eyebrow"><span></span> KEEP SLOTH CURRENT</div><h1>UPDATE <em>CLIENT</em></h1><p>Check for a newer Sloth release and finish installing it here.</p></div>
+        <article class="panel launcher-update-panel">
+          <div class="eyebrow muted">INSTALLED VERSION</div><h2 id="update-installed-version">—</h2>
+          <span class="instance-badge current" id="update-state-label">NOT CHECKED</span><p class="field-help">Launcher updates replace the desktop app and its bundled Sloth game component. Managed Minecraft and mod files are verified and prepared on the next Play. A running game keeps its current components until it is closed.</p>
+          <div class="release-channel-controls"><label class="field-label" for="update-channel">RELEASE CHANNEL</label><select id="update-channel"><option value="stable">Stable · regular releases</option><option value="preview">Preview · beta features, may have bugs</option></select><button class="tool-button" id="update-channel-save">Save channel</button><p class="field-help" id="update-channel-status">Stable is the default. A channel change takes effect after reopening Sloth Client.</p><p class="field-help">Both channels require signed installers. Preview follows beta and stable releases. Returning to Stable waits for a newer stable version; use Previous Launcher for a manual recovery.</p></div>
+          <p id="update-page-status" role="status" aria-live="polite">Check for updates to see whether a newer release is available.</p>
+          <progress id="update-download-progress" max="100" value="0" aria-label="Update download progress" hidden></progress>
+          <div class="update-page-actions"><button class="save-button" id="update-page-check">CHECK FOR UPDATES</button><button class="save-button" id="update-page-install" hidden>RESTART &amp; UPDATE</button></div>
+          <h3>RELEASE NOTES</h3><pre class="release-notes" id="update-release-notes">Sloth Client — Client Studio includes Setup Studio, presets, setup checks and storage. Recent updates improve Freelook reset, keep the compass clear of Tab and organize launch preparation. Check for updates to load the latest release notes.</pre>
+          <p class="field-help">Bundled client: Sloth Client 1.0.0 · Minecraft 1.21.11. Client updates arrive with launcher releases.</p>
+          <h3>PREVIOUS LAUNCHER</h3><p id="launcher-recovery-status" role="status">Checking recovery availability…</p><button class="tool-button" id="launcher-rollback" hidden>OPEN PREVIOUS LAUNCHER</button>
+          <p class="field-help">Before installing an update, Sloth saves this launcher locally. Recovery checks every saved file and reopens that version without replacing your instances. Close Minecraft before installing or recovering. Recovery is manual if a newer launcher fails to start.</p>
+          <p class="field-help">Updates are downloaded automatically when available. Sloth verifies the release signature before installation.</p>
+        </article>
+      </section>
+
+      <!-- GAME LOG -->
+      <section class="page" id="page-log">
+        <div class="page-intro"><div class="eyebrow"><span></span> TROUBLESHOOTING</div><h1>GAME <em>LOG</em></h1><p id="log-summary">Output from the last game you started from this launcher.</p></div>
+        <div class="log-toolbar">
+          <button class="tool-button" id="copy-log">Copy log</button>
+          <button class="tool-button" data-go="recovery">Explain errors</button>
+          <button class="tool-button" data-folder="logs">Open logs folder</button>
+          <button class="tool-button" data-folder="crash">Open crash reports</button>
+          <label class="switch-row inline"><input type="checkbox" id="log-follow" checked><span class="switch"></span><span>Follow output</span></label>
+        </div>
+        <pre class="log-view panel" id="log-view" tabindex="0"><span class="log-empty">Nothing yet. Press Play and the game's output shows up here.</span></pre>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="rename-modal" hidden><form class="modal panel" id="rename-form" role="dialog" aria-modal="true" aria-labelledby="rename-title"><h2 id="rename-title">RENAME INSTANCE</h2><label for="rename-name" class="field-label">DISPLAY NAME</label><input class="instance-name-input" id="rename-name" maxlength="32" minlength="2" required><div class="modal-actions"><button class="tool-button" type="button" id="rename-cancel">Cancel</button><button class="save-button" type="submit">SAVE NAME</button></div></form></div>
+  <div class="modal-backdrop" id="quick-modal" hidden><div class="modal panel quick-panel" role="dialog" aria-modal="true" aria-labelledby="quick-title"><div class="quick-heading"><h2 id="quick-title">QUICK ACTIONS</h2><button class="tool-button" id="quick-close">Close</button></div><input class="instance-name-input" id="quick-search" placeholder="Find a page or action…" aria-label="Search quick actions"><div id="quick-results"></div><p class="field-help">↑ ↓ to select · Enter to open · Escape to close</p></div></div>
+  <div class="modal-backdrop" id="signin-modal" hidden>
+    <div class="modal panel" role="dialog" aria-modal="true" aria-labelledby="signin-title">
+      <div class="eyebrow"><span></span> MICROSOFT SIGN-IN</div>
+      <h2 id="signin-title">FINISH IN YOUR BROWSER</h2>
+      <div id="signin-device">
+        <p>Your browser opened <b>microsoft.com/link</b>. Enter this code there, then sign in with the Microsoft account that owns Minecraft.</p>
+        <div class="code-box"><span id="signin-code">—</span><button class="tool-button" id="copy-signin-code">Copy code</button></div>
+        <p class="modal-note" id="signin-expiry"></p>
+      </div>
+      <p id="signin-browser" hidden>Your browser opened Microsoft's sign-in page. Finish signing in there; this window updates by itself.</p>
+      <div class="modal-actions">
+        <button class="tool-button" id="reopen-signin">Open the page again</button>
+        <button class="tool-button" id="cancel-signin">Cancel</button>
+      </div>
+      <p class="modal-note">Only type this code on a microsoft.com page. Sloth Client never asks for your password; it only receives a sign-in token from Microsoft.</p>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="instance-modal" hidden>
+    <form class="modal panel" id="instance-form" role="dialog" aria-modal="true" aria-labelledby="instance-title">
+      <div class="eyebrow"><span></span> INSTANCE LIBRARY</div>
+      <h2 id="instance-title">CREATE A NEW INSTANCE</h2>
+      <p>Give this Minecraft profile a name. Its saves, settings, screenshots, mods, and resource packs will live separately from your other instances.</p>
+      <label class="field-label" for="instance-name">INSTANCE NAME</label>
+      <input class="instance-name-input" id="instance-name" maxlength="32" required minlength="2" placeholder="e.g. Survival, Creative, Mod Testing" autocomplete="off">
+      <label class="instance-copy-option"><input type="checkbox" id="instance-copy"><span><b>Copy my current setup</b><small>Includes worlds, mods, configs, resource packs, shaders, screenshots and game options.</small></span></label>
+      <div class="modal-actions"><button class="tool-button" type="button" id="instance-cancel">Cancel</button><button class="save-button" id="instance-submit" type="submit">CREATE INSTANCE</button></div>
+      <p class="modal-note">Accounts and sign-in data are never copied. Mods are copied as-is; only duplicate mods you trust.</p>
+    </form>
+  </div>
+  <div class="modal-backdrop" id="modpack-modal" hidden><section class="modpack-dialog" role="dialog" aria-modal="true" aria-labelledby="modpack-title"><div class="section-heading"><h2 id="modpack-title">Review modpack</h2><button class="tool-button" id="modpack-close">Close</button></div><p id="modpack-detail"></p><p id="modpack-compatibility" class="compatibility-label"></p><p id="modpack-size" class="field-help"></p><label id="modpack-optional-label"><input type="checkbox" id="modpack-optional" checked> Include optional client files</label><p class="field-help">This pack runs its own mods in a separate instance. Sloth’s in-game client and performance mods are excluded.</p><p id="modpack-progress" role="status" aria-live="polite"></p><div class="modal-actions"><button class="tool-button" id="modpack-cancel">Cancel</button><button class="save-button" id="modpack-create">Install pack</button></div></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./holiday-themes.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+</html>
