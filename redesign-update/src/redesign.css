@@ -66,3 +66,11 @@ input[type=checkbox], input[type=range], input[type=radio] { accent-color: var(-
 .modal, .account-menu, .update-card { border-radius: 0 !important; border: 1px solid var(--rd-pk) !important; background: #14060f !important; box-shadow: 0 0 40px rgba(255,46,151,.3) !important; }
 ::-webkit-scrollbar-thumb { background: #7a2a58 !important; border: 2px solid var(--rd-bg) !important; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Window: no square frame. The app fills the window; the system rounds the corners. */
+.app-shell { padding: 0 !important; }
+.sidebar { height: 100vh !important; border-radius: 0 !important; border-top: 0 !important; border-bottom: 0 !important; border-left: 0 !important; box-shadow: none !important; }
+.main-area { height: 100vh !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+.topbar { border-radius: 0 !important; padding-right: 160px !important; -webkit-app-region: drag; }
+.topbar button, .topbar input, .topbar a, .topbar select { -webkit-app-region: no-drag; }
+.brand { -webkit-app-region: drag; }

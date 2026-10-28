@@ -952,7 +952,9 @@ function createWindow() {
   const restored=windowState.load(windowFile,[screen.getPrimaryDisplay(),...screen.getAllDisplays().filter(d=>d.id!==screen.getPrimaryDisplay().id)]);
   win = new BrowserWindow({
     ...restored,
-    backgroundColor: '#101014', title: 'Sloth Client', show: false,
+    backgroundColor: '#12060f', title: 'Sloth Client', show: false,
+    // No title-bar box: the app fills the window and Windows 11 rounds its corners. Native minimize/maximize/close stay as an overlay.
+    titleBarStyle: 'hidden', titleBarOverlay: { color: '#12060f', symbolColor: '#ffb3d9', height: 44 },
     icon: path.join(__dirname, 'assets', 'icon.png'),
     autoHideMenuBar: true,
     webPreferences: {
