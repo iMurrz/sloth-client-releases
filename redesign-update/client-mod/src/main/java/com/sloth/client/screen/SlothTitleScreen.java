@@ -20,7 +20,7 @@ public final class SlothTitleScreen extends SlothScreen {
     private static final Identifier BACKGROUND=Identifier.fromNamespaceAndPath("sloth-client","textures/gui/pink-workspace-background.png");
     private static final int PETALS=64;
     private static final int[] PETAL_COLOURS={0xFFFFC6DC,0xFFFFA6C9,0xFFFF8FBC,0xFFFFE0EC};
-    private final float[] px=new float[PETALS],py=new float[PETALS],pv=new float[PETALS],pp=new float[PETALS],pr=new float[PETALS],pw=new float[PETALS];
+    private final float[] px=new float[PETALS],py=new float[PETALS],pv=new float[PETALS],pp=new float[PETALS],pr=new float[PETALS],pspin=new float[PETALS];
     private final int[] pz=new int[PETALS];
     private long lastFrame,openedAt;
     private Supplier<PlayerSkin> skin;
@@ -82,7 +82,7 @@ public final class SlothTitleScreen extends SlothScreen {
             pv[i]=layer==2?48+(i*7%18):layer==1?26+(i*11%12):12+(i*5%8);
             pp[i]=i*1.7f;
             pr[i]=i*0.9f;
-            pw[i]=layer==2?2.2f:layer==1?1.2f:0.4f;
+            pspin[i]=layer==2?2.2f:layer==1?1.2f:0.4f;
         }
     }
 
@@ -120,7 +120,7 @@ public final class SlothTitleScreen extends SlothScreen {
             if(move){
                 py[i]+=pv[i]*dt;
                 pp[i]+=dt*1.3f;
-                pr[i]+=dt*pw[i];
+                pr[i]+=dt*pspin[i];
                 px[i]+=((float)Math.sin(pp[i])*10f+6f+gust*(pz[i]/9f+0.3f))*dt;
                 if(py[i]>height+8){py[i]=-10;px[i]=Math.abs(i*389+(int)(now/1000000L))%Math.max(1,width);}
                 if(px[i]>width+8)px[i]=-10;
