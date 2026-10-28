@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 /** Flat button in the Sloth Launcher style (instead of Minecraft's stone buttons), with eased hover. */
 public class SlothButton extends AbstractButton {
-    public enum Style { PRIMARY, NORMAL, DANGER, CHIP, TOGGLE }
+    public enum Style { PRIMARY, NORMAL, DANGER, CHIP, TOGGLE, PIXEL }
 
     private final Consumer<SlothButton> action;
     private final Style style;
@@ -72,6 +72,15 @@ public class SlothButton extends AbstractButton {
                     g.fill(x + (w - line) / 2, y + h - 1, x + (w + line) / 2, y + h, 0x99F7A8C9);
                 }
                 text = selected || t > 0.5f ? Ui.TEXT : Ui.MUTED;
+            }
+            case PIXEL -> {
+                // Cream, bevelled, Minecraft-style button used on the title screen.
+                g.fill(x, y, x + w, y + h, 0xFF4A2336);
+                g.fill(x + 1, y + 1, x + w - 1, y + h - 1, SlothTheme.lerp(0xFFFBE3EA, 0xFFFFF4F8, t));
+                g.fill(x + 1, y + 1, x + w - 1, y + 2, 0xFFFFFFFF);
+                g.fill(x + 1, y + h - 3, x + w - 1, y + h - 1, 0xFFE2A9BE);
+                if (t > 0.01f) g.renderOutline(x, y, w, h, SlothTheme.lerp(0xFF4A2336, 0xFFFF2E97, t));
+                text = 0xFF4A2336;
             }
             case TOGGLE -> {
                 knob = knob < 0 || !SlothTheme.animated() ? (on ? 1f : 0f) : SlothTheme.ease(knob, on ? 1f : 0f, elapsed, 20f);
