@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sloth.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "AbstractSelectionListMixin",
+    "BetterSoundsMixin",
+    "CameraMixin",
+    "ChatComponentMixin",
+    "ClientLevelDataMixin",
+    "FullbrightMixin",
+    "FontAccessor",
+    "GuiGraphicsMixin",
+    "GameRendererMixin",
+    "ItemCooldownsMixin",
+    "KeyboardHandlerMixin",
+    "LevelWeatherMixin",
+    "LocalCapeMixin",
+    "MinecraftMixin",
+    "MiningSyncMixin",
+    "MiningUpdateMixin",
+    "MouseHandlerMixin",
+    "ParticleEngineMixin",
+    "PhotoGuidesMixin",
+    "ScreenMixin",
+    "FreelookNameTagMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

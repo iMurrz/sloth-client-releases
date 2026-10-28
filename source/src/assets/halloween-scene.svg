@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <radialGradient id="moon"><stop stop-color="#f5ddaa"/><stop offset="1" stop-color="#d7b5df"/></radialGradient>
+    <linearGradient id="pumpkin" x1="380" y1="480" x2="490" y2="610" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb451"/><stop offset="1" stop-color="#c95120"/></linearGradient>
+  </defs>
+  <circle cx="432" cy="119" r="75" fill="#c18de3" opacity=".07"/>
+  <path d="M392 68h80v100h-80z" fill="#e0cdb0" opacity=".45"/>
+  <path d="M424 56h64v80h-64z" fill="#292034"/>
+  <path d="M448 506Q448 482 459 477" stroke="#91a36d" stroke-width="11" stroke-linecap="round"/>
+  <ellipse cx="447" cy="555" rx="72" ry="60" fill="url(#pumpkin)"/>
+  <ellipse cx="447" cy="555" rx="43" ry="60" stroke="#b64b22" stroke-width="3" opacity=".6"/>
+  <ellipse cx="447" cy="555" rx="19" ry="60" stroke="#ffd18a" stroke-width="2" opacity=".3"/>
+  <path d="M409 548L427 527L434 551ZM459 551L467 527L486 548ZM430 558L447 545L460 558Z" fill="#2c1823"/>
+  <path d="M414 574L430 580L437 574L447 584L458 574L465 580L481 573Q471 599 447 599Q427 599 414 574Z" fill="#2c1823"/>
+  <circle cx="176" cy="83" r="2" fill="#f6b861"/>
+  <circle cx="527" cy="364" r="2" fill="#f6b861"/>
+  <path d="M240 190V202M234 196H246M524 197V209M518 203H530" stroke="#e5c9e7" stroke-width="2" opacity=".55"/>
+</svg>

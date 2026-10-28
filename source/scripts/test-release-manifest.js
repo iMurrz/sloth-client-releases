@@ -1,0 +1,23 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const os = require('node:os');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const { inventory, verifyInventory } = require('./release-manifest');
+const { signFile, verifyFile } = require('../src/lib/update-signature');
+let root;
+(async () => {
+  root = await fs.mkdtemp(path.join(os.tmpdir(), 'sloth-manifest-'));
+  const app = path.join(root, 'app'); await fs.mkdir(app);
+  const asset = path.join(app, 'example.jar'); await fs.writeFile(asset, 'synthetic asset');
+  const document = { schema: 1, version: '0.0.1', files: await inventory(app) };
+  await verifyInventory(app, document, '0.0.1');
+  const manifest = path.join(root, 'manifest.json'); await fs.writeFile(manifest, JSON.stringify(document));
+  const keys = crypto.generateKeyPairSync('ed25519'), signature = await signFile(keys.privateKey, manifest, '0.0.1', 'manifest.json');
+  assert.equal(await verifyFile(keys.publicKey, manifest, '0.0.1', 'manifest.json', signature), true);
+  assert.equal(await verifyFile(keys.publicKey, manifest, '0.0.2', 'manifest.json', signature), false);
+  await fs.writeFile(asset, 'changed'); await assert.rejects(verifyInventory(app, document, '0.0.1'));
+  await fs.writeFile(asset, 'synthetic asset'); await fs.writeFile(path.join(app, 'extra.dll'), 'extra'); await assert.rejects(verifyInventory(app, document, '0.0.1'));
+  await fs.unlink(path.join(app, 'extra.dll')); await fs.unlink(asset); await assert.rejects(verifyInventory(app, document, '0.0.1'));
+  console.log('6/6 signed release inventory checks passed');
+})().catch(error => { console.error(error.stack); process.exitCode = 1; }).finally(async () => { if (root) await fs.rm(root, { recursive: true, force: true }); });

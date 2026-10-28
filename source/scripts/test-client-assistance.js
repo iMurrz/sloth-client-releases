@@ -1,0 +1,9 @@
+const fs=require('fs'),os=require('os'),path=require('path'),cp=require('child_process'),assert=require('assert/strict');
+const {LauncherHealth}=require('../src/lib/launcher-health');
+const root=fs.mkdtempSync(path.join(os.tmpdir(),'sloth-assistance-'));
+try{
+ const health=new LauncherHealth(root);assert.equal(health.begin('0.0.29'),null);health.ready();assert.equal(health.read().state,'ready');const previous=health.begin('0.0.30');assert.equal(previous.version,'0.0.29');assert.equal(health.read().lastReadyVersion,'0.0.29');health.fail();assert.equal(health.begin('0.0.30').state,'failed');health.ready();assert.equal(health.read().lastReadyVersion,'0.0.30');assert.throws(()=>health.begin('bad'));assert.equal(fs.readdirSync(root).filter(n=>n.endsWith('.tmp')).length,0);fs.writeFileSync(health.file,'x'.repeat(8193));assert.throws(()=>health.read(),/Oversized/);
+ const {Settings}=require('../src/lib/settings');const s=new Settings(path.join(root,'settings.json'),{maxMemoryMb:8192});s.update({accessibility:{textScale:1.5,reduceMotion:true,highContrast:true}});assert.equal(s.get().accessibility.textScale,1.5);
+ const java='C:/Program Files/Java/jdk-21.0.12.1/bin/',source='client-mod/src/main/java/com/sloth/client/studio/';const build=path.join(root,'classes');fs.mkdirSync(build);for(const [exe,args]of [['javac.exe',['--release','21','-d',build,source+'HudPacking.java',source+'PackClues.java','scripts/ClientAssistanceCheck.java']],['java.exe',['-cp',build,'ClientAssistanceCheck']]]){const r=cp.spawnSync(java+exe,args,{encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error(r.stdout+r.stderr);process.stdout.write(r.stdout);}
+ console.log('PASS startup health: first start, ready, update, failure, retry, version/size rejection and temporary cleanup; 150% text preference.');
+}finally{if(path.dirname(root)===os.tmpdir()&&path.basename(root).startsWith('sloth-assistance-'))fs.rmSync(root,{recursive:true,force:true});}

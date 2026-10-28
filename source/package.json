@@ -1,0 +1,127 @@
+{
+  "name": "sloth-client",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Sloth Client — your Minecraft workspace",
+  "author": "Sloth Client",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node scripts/check.js",
+    "snapshot": "node scripts/run-snapshot.js",
+    "icons": "electron scripts/make-icons.js",
+    "lock": "node scripts/lock.js",
+    "lock:mods": "node scripts/lock.js mods",
+    "smoke": "node scripts/smoke-install.js",
+    "build:mod": "node scripts/build-mod.js",
+    "test:security": "node scripts/test-security.js",
+    "test:workshop": "node scripts/test-workshop.js",
+    "test:studio-ui": "electron scripts/test-studio-ui.js",
+    "dist:win": "npm run signing:preflight && npm run check && npm run test:security && npm run build:mod && node scripts/build-signed-windows.js",
+    "dist:dev": "npm run check && npm run build:mod && node scripts/build-development.js",
+    "dev:verify": "node scripts/verify-development.js",
+    "release:win": "npm run release:readiness && npm run dist:win && npm run updates:publish",
+    "updates:configure": "node scripts/configure-updates.js",
+    "updates:verify": "node scripts/publish-release.js --verify-only",
+    "updates:publish": "node scripts/publish-release.js",
+    "keygen": "node scripts/update-keygen.js",
+    "test:seal": "node scripts/test-session-seal.js",
+    "test:trust-ui": "electron scripts/test-trust-ui.js",
+    "test:download-security": "node scripts/test-download-path-security.js",
+    "test:logging-security": "node scripts/test-logging-security.js",
+    "test:support-hardening": "node scripts/test-support-hardening.js",
+    "signing:verify": "powershell.exe -NoProfile -NonInteractive -File scripts/verify-windows-signing.ps1",
+    "signing:preflight": "node scripts/windows-signing-config.js",
+    "release:readiness": "node scripts/release-readiness.js",
+    "test:release-hardening": "node scripts/test-release-hardening.js && node scripts/test-update-dual-signing.js && node scripts/test-release-manifest.js"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "semver": "^7.8.5"
+  },
+  "devDependencies": {
+    "electron": "44.4.5",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.sloth.launcher",
+    "productName": "Sloth Client",
+    "copyright": "Sloth Client. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "afterAllArtifactBuild": "scripts/sign-update.js",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "client-mod/build/libs",
+        "to": "mods",
+        "filter": [
+          "sloth-client-*.jar",
+          "!*-sources.jar",
+          "!*-dev.jar"
+        ]
+      },
+      {
+        "from": "launchwrapper/build",
+        "to": "launchwrapper",
+        "filter": [
+          "sloth-launchwrapper.jar"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "signExts": [
+        ".dll",
+        ".node"
+      ]
+    },
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "enableCookieEncryption": true,
+      "loadBrowserProcessSpecificV8Snapshot": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": false,
+      "shortcutName": "Sloth Client",
+      "artifactName": "Sloth-Client-Setup-${version}.${ext}",
+      "guid": "027f2481-120f-595d-a940-53efd7744f1e"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "iMurrz",
+        "repo": "sloth-client-releases",
+        "releaseType": "release",
+        "publisherName": [
+          "Sloth Client"
+        ]
+      }
+    ],
+    "forceCodeSigning": true
+  },
+  "overrides": {
+    "app-builder-lib": {
+      "@electron/get": "5.1.0"
+    }
+  }
+}

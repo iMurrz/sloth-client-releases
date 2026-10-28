@@ -1,0 +1,22 @@
+{
+  "key.category.sloth-client.sloth": "Sloth Client",
+  "key.sloth-client.mod_menu": "Mod Menu",
+  "key.sloth-client.studio": "Sloth Studio / photo controls",
+  "key.sloth-client.quick_controls": "Pinned quick controls",
+  "key.sloth-client.hold_quiet": "Hold for quieter audio",
+  "key.sloth-client.hold_clean": "Hold for a clean Sloth HUD",
+  "key.sloth-client.zoom": "Zoom",
+  "key.sloth-client.freelook": "Freelook",
+  "key.sloth-client.toggle_hud": "Hide/Show Sloth HUD",
+  "key.sloth-client.stopwatch": "Stopwatch start/stop/reset",
+  "key.sloth-client.hotkey_1": "Text Hotkey 1",
+  "key.sloth-client.hotkey_2": "Text Hotkey 2",
+  "key.sloth-client.hotkey_3": "Text Hotkey 3",
+  "key.sloth-client.hotkey_4": "Text Hotkey 4",
+  "key.sloth-client.hotkey_5": "Text Hotkey 5",
+  "key.sloth-client.hotkey_6": "Text Hotkey 6",
+  "key.sloth-client.quick_wheel": "Hold Quick Settings Wheel",
+  "key.sloth-client.bookmark": "Save Gameplay Moment",
+  "key.sloth-client.build_anchor": "Set Build Measurement Anchor",
+  "key.sloth-client.chat_hub": "Open Chat Hub"
+}

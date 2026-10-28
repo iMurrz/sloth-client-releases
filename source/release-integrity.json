@@ -1,0 +1,41 @@
+{
+  "verified": true,
+  "version": "0.0.34",
+  "release": "https://github.com/iMurrz/sloth-client-releases/releases/tag/v0.0.34",
+  "checkedAt": "2026-10-04T00:16:36.706Z",
+  "checks": [
+    {
+      "name": "Sloth-Client-Setup-0.0.34.exe",
+      "bytes": 112640541,
+      "sha256": "9c18a30cdf5386a258080c2a83cba1ddf0be6c5c8e2d624b07b1e710d822f4e8"
+    },
+    {
+      "name": "Sloth-Client-Setup-0.0.34.exe.sig",
+      "bytes": 89,
+      "sha256": "0968120ef9f69f5cde40a9d8a218b828fc42779e7c7c83e9f27734b87a5dba69"
+    },
+    {
+      "name": "Sloth-Client-0.0.34-files.json",
+      "bytes": 11703,
+      "sha256": "c7e1a949e5f7f6761e4efe09a78c9648bb067db5004ede48fa8d074453c9c4d0"
+    },
+    {
+      "name": "Sloth-Client-0.0.34-files.json.sig",
+      "bytes": 89,
+      "sha256": "c01aaff13ce22e592a913abc91382f0f43c74cea4d1b2e4125d2e5bbe37cbda2"
+    },
+    {
+      "name": "Sloth-Client-update.json",
+      "bytes": 366,
+      "sha256": "a7b84b926c26a3441aa76207476ad434f4672589cde081efcdce4b52f54183d0"
+    },
+    {
+      "name": "Sloth-Client-update.json.sig",
+      "bytes": 89,
+      "sha256": "8905a49e416b04d3ee826046d2c04618be96656ba9a9184cf34a62e84a7a8c8a"
+    }
+  ],
+  "ed25519Signatures": "installer, feed and inventory passed",
+  "inventoryEntries": 76,
+  "scope": "Downloaded release authenticity and integrity. This workflow does not install or execute the application, unpack and compare installed files, scan for malware, prove build provenance, or provide Windows publisher signing."
+}

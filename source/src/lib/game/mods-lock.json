@@ -1,0 +1,610 @@
+{
+  "gameVersion": "1.21.11",
+  "loader": "fabric",
+  "generatedAt": "2026-10-01T05:04:31.344Z",
+  "mods": [
+    {
+      "slug": "fabric-api",
+      "kind": "mod",
+      "name": "Fabric API",
+      "description": "Library the Sloth Client mod is built on.",
+      "category": "required",
+      "defaultEnabled": true,
+      "version": "0.141.6+1.21.11",
+      "versionId": "6qAuTtLR",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/6qAuTtLR/fabric-api-0.141.6%2B1.21.11.jar",
+        "filename": "fabric-api-0.141.6+1.21.11.jar",
+        "sha512": "852d3682c4f353fd0ca86546af8578513e8bcf628377fa9d49c556bc59c5024c69ab56c92fc6dfba11fed19e4316a3f5636e7e07fd3d96f7043b531aef59b637",
+        "size": 2426039
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "sodium",
+      "kind": "mod",
+      "name": "Sodium",
+      "description": "Modern rendering engine. Usually doubles FPS or more.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "mc1.21.11-0.8.14-fabric",
+      "versionId": "rkdTcxoT",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/AANobbMI/versions/rkdTcxoT/sodium-fabric-0.8.14%2Bmc1.21.11.jar",
+        "filename": "sodium-fabric-0.8.14+mc1.21.11.jar",
+        "sha512": "04c43f9e8534b87a52c42ffd51b0e344d4ef92dc9cc52da33d13af6a18bf74b05380d2027f1e0db982698d0aff274c42741c1e21b313b0cd75ed3af005fc98d9",
+        "size": 1909150
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "lithium",
+      "kind": "mod",
+      "name": "Lithium",
+      "description": "Faster game logic, physics and chunk handling.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "mc1.21.11-0.21.4-fabric",
+      "versionId": "Ow7wA0kG",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/gvQqBUqZ/versions/Ow7wA0kG/lithium-fabric-0.21.4%2Bmc1.21.11.jar",
+        "filename": "lithium-fabric-0.21.4+mc1.21.11.jar",
+        "sha512": "f14a5c3d2fad786347ca25083f902139694f618b7c103947f2fd067a7c5ee88a63e1ef8926f7d693ea79ed7d00f57317bae77ef9c2d630bf5ed01ac97a752b94",
+        "size": 900462
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "ferrite-core",
+      "kind": "mod",
+      "name": "FerriteCore",
+      "description": "Cuts memory use substantially.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "8.2.0-fabric",
+      "versionId": "Ii0gP3D8",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/uXXizFIs/versions/Ii0gP3D8/ferritecore-8.2.0-fabric.jar",
+        "filename": "ferritecore-8.2.0-fabric.jar",
+        "sha512": "3210926a82eb32efd9bcebabe2f6c053daf5c4337eebc6d5bacba96d283510afbde646e7e195751de795ec70a2ea44fef77cb54bf22c8e57bb832d6217418869",
+        "size": 80138
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "immediatelyfast",
+      "kind": "mod",
+      "name": "ImmediatelyFast",
+      "description": "Speeds up HUD, text and entity rendering.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "1.14.3+1.21.11-fabric",
+      "versionId": "4EwhsTu7",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/4EwhsTu7/ImmediatelyFast-Fabric-1.14.3%2B1.21.11.jar",
+        "filename": "ImmediatelyFast-Fabric-1.14.3+1.21.11.jar",
+        "sha512": "2564cb28259352c3aa5759aceca62667de08a7860a40910dad40a043af851a074b2d75cef50b9fa6f1971febb3a5ecebe4067cbd4b60e63ef711b85f4bc21407",
+        "size": 302709
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "entityculling",
+      "kind": "mod",
+      "name": "Entity Culling",
+      "description": "Skips rendering entities and block entities you cannot see.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "1.11.2",
+      "versionId": "CFBkR8Vm",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/NNAgCjsB/versions/CFBkR8Vm/entityculling-fabric-1.11.2-mc1.21.11.jar",
+        "filename": "entityculling-fabric-1.11.2-mc1.21.11.jar",
+        "sha512": "bb73145270e645c95a285fd01ce174f8f4b53e22c688e87d1a989f9afdf4e740ca3cb3984e23441ced8097c67e4e01f48d348d516b0903f756751d5c28e6de47",
+        "size": 1528856
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "dynamic-fps",
+      "kind": "mod",
+      "name": "Dynamic FPS",
+      "description": "Lowers FPS while the game is in the background.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "3.11.6",
+      "versionId": "Fab7e5Th",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/LQ3K71Q1/versions/Fab7e5Th/dynamic-fps-3.11.6%2Bminecraft-1.21.11-fabric.jar",
+        "filename": "dynamic-fps-3.11.6+minecraft-1.21.11-fabric.jar",
+        "sha512": "c45652252e2176cb8e2c44dfd9032c617135a100dcf161b9e6e6717803c14d1359d0f940fa10dc1aa6ad80669983f4b9c5636c0c2953d3314e06f893f0cdc736",
+        "size": 219961
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "sodium-extra",
+      "kind": "mod",
+      "name": "Sodium Extra",
+      "description": "More video options: fog, particles, animations, FPS counter.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "mc1.21.11-0.9.4+fabric",
+      "versionId": "oqoegXMw",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/PtjYWJkn/versions/oqoegXMw/sodium-extra-fabric-0.9.4%2Bmc1.21.11.jar",
+        "filename": "sodium-extra-fabric-0.9.4+mc1.21.11.jar",
+        "sha512": "65d1c245ffc89efd8a3c9412efd4f11c2d365be2c15ec8a5edb8da4b9bca5537dea62bf0fd04462c34e2f785a9b3980b54d506a377bdb6f263a177b1d0e06edc",
+        "size": 471588
+      },
+      "dependencies": [
+        "sodium"
+      ]
+    },
+    {
+      "slug": "reeses-sodium-options",
+      "kind": "mod",
+      "name": "Reese's Sodium Options",
+      "description": "A cleaner, searchable video settings screen.",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "mc1.21.11-2.2.4+fabric",
+      "versionId": "ffpCc8nY",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/ffpCc8nY/reeses-sodium-options-fabric-2.2.4%2Bmc1.21.11.jar",
+        "filename": "reeses-sodium-options-fabric-2.2.4+mc1.21.11.jar",
+        "sha512": "224e324effcaa03a38582b05c09cbd79a5922e916888b45849d966a6a7f30a7be18a8cc2ea09f44e79e6ea1a8d143a28c3cbfafdb398025b48ab1a1a7d71fd49",
+        "size": 258250
+      },
+      "dependencies": [
+        "sodium"
+      ]
+    },
+    {
+      "slug": "moreculling",
+      "kind": "mod",
+      "name": "More Culling",
+      "description": "Skips rendering more hidden faces (leaves, glass, item frames).",
+      "category": "performance",
+      "defaultEnabled": true,
+      "version": "1.6.2",
+      "versionId": "wOzykoLV",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/51shyZVL/versions/wOzykoLV/moreculling-fabric-1.21.11-1.6.2.jar",
+        "filename": "moreculling-fabric-1.21.11-1.6.2.jar",
+        "sha512": "58cec88e84835c543d8604411f89a0984abe51f0332860354355ede290d2442fc33a86ecda1766e0b1a82ba4edfab27f3c9f6855c0af3234e200218b892756f2",
+        "size": 340975
+      },
+      "dependencies": [
+        "cloth-config"
+      ]
+    },
+    {
+      "slug": "cloth-config",
+      "kind": "mod",
+      "name": "Cloth Config API",
+      "description": "Configuration Library for Minecraft Mods",
+      "category": "dependency",
+      "defaultEnabled": true,
+      "version": "21.11.153+fabric",
+      "versionId": "xuX40TN5",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/9s6osm5g/versions/xuX40TN5/cloth-config-21.11.153-fabric.jar",
+        "filename": "cloth-config-21.11.153-fabric.jar",
+        "sha512": "8f455489d4b71069e998568cf4e1450116f4360a4eb481cd89117f629c6883164886cf63ca08ac4fc929dd13d1112152755a6216d4a1498ee6406ef102093e51",
+        "size": 1148427
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "viafabricplus",
+      "kind": "mod",
+      "name": "ViaFabricPlus",
+      "description": "Join servers on any Minecraft version (1.8, 1.12, Bedrock...). Pick a version, or Auto, with the button in Multiplayer.",
+      "category": "optional",
+      "defaultEnabled": true,
+      "version": "4.4.15",
+      "versionId": "RM6hveoK",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/rIC2XJV4/versions/RM6hveoK/ViaFabricPlus-4.4.15.jar",
+        "filename": "ViaFabricPlus-4.4.15.jar",
+        "sha512": "6762685c0243a9c7ec43321f2bc011030fd6566797a647219ed275d956c2272777dae0ff43ebd82a77368350494394f5b0c1d98284ffd762a4876fcfd68958c4",
+        "size": 27015009
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "appleskin",
+      "kind": "mod",
+      "name": "AppleSkin",
+      "description": "Shows hunger and saturation restored by food.",
+      "category": "optional",
+      "defaultEnabled": true,
+      "version": "3.0.8+mc1.21.11",
+      "versionId": "59ti1rvg",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/EsAfCjCV/versions/59ti1rvg/appleskin-fabric-mc1.21.11-3.0.8.jar",
+        "filename": "appleskin-fabric-mc1.21.11-3.0.8.jar",
+        "sha512": "d32206cb8d6fac7f0b579f7269203135777283e1639ccb68f8605e9f5469b5b54305fd36ba82c64b48b89ae4f1a38501bfb5827284520c3ec622d95edcfa34de",
+        "size": 180107
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "continuity",
+      "kind": "mod",
+      "name": "Continuity",
+      "description": "Connected textures for resource packs that support them.",
+      "category": "optional",
+      "defaultEnabled": true,
+      "version": "3.0.1-beta.1+1.21.11",
+      "versionId": "mX1iknM1",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/1IjD5062/versions/mX1iknM1/continuity-3.0.1-beta.1%2B1.21.11.jar",
+        "filename": "continuity-3.0.1-beta.1+1.21.11.jar",
+        "sha512": "b092e95668bf5e32d531842d920e99f865213eaf3e7c26759b51e5a95ef2702c2c0485bba6d8adf4543e8d71680d5a05fad68e94159e8e507033b516b736eb60",
+        "size": 997125
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "betterf3",
+      "kind": "mod",
+      "name": "BetterF3",
+      "description": "A cleaner, colourful, customizable F3 debug screen.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "17.0.0",
+      "versionId": "Qw1nhj7u",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/8shC1gFX/versions/Qw1nhj7u/BetterF3-17.0.0-Fabric-1.21.11.jar",
+        "filename": "BetterF3-17.0.0-Fabric-1.21.11.jar",
+        "sha512": "5f9f2c7129508a3e27c8f275eb514d53451ba19ffb90aa23c256253c84585a21b4624b24cd51ed3ee28cc1f02fc5fe8bcdbeb48033a6e910f15653c4455b4c50",
+        "size": 1714229
+      },
+      "dependencies": [
+        "cloth-config",
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "3dskinlayers",
+      "kind": "mod",
+      "name": "3D Skin Layers",
+      "description": "Renders the outer skin layer in 3D.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "1.11.3",
+      "versionId": "TpZj1P0j",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/zV5r3pPn/versions/TpZj1P0j/skinlayers3d-fabric-1.11.3-mc1.21.11.jar",
+        "filename": "skinlayers3d-fabric-1.11.3-mc1.21.11.jar",
+        "sha512": "04329d14e0af83b979e33ee5d200f2db1211a3ded5175d75d8d56dc466931990ad6582477258b82c02d4cc7108d9ca71bbe756377035d98904acd50e7fe3c9c5",
+        "size": 1912000
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "iris",
+      "kind": "mod",
+      "name": "Iris Shaders",
+      "description": "Shader pack support. Switches Sodium to the build Iris supports. Heavy on GPUs.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "1.10.7+1.21.11-fabric",
+      "versionId": "fDpuVzVr",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/fDpuVzVr/iris-fabric-1.10.7%2Bmc1.21.11.jar",
+        "filename": "iris-fabric-1.10.7+mc1.21.11.jar",
+        "sha512": "b009a07ecbdf3eb510b4acacbb435e058406ddbabcc4f1a5efeacad154cd26777474dcf4a2b5a3a92644b150f047977ada5687a9d9172132fbe6d3d036961b7e",
+        "size": 2807547
+      },
+      "dependencies": [
+        "sodium"
+      ],
+      "pins": {
+        "sodium": {
+          "version": "mc1.21.11-0.8.7-fabric",
+          "versionId": "UddlN6L4",
+          "file": {
+            "url": "https://cdn.modrinth.com/data/AANobbMI/versions/UddlN6L4/sodium-fabric-0.8.7%2Bmc1.21.11.jar",
+            "filename": "sodium-fabric-0.8.7+mc1.21.11.jar",
+            "sha512": "d7f035d6112eaac92cf0f11e4426db631fca5a7115dd355c2126efee4255b648a0102552bbf7b22a7eae9203d08f8740435842bfddcd94e2434f51b57ee9c641",
+            "size": 1870358
+          }
+        },
+        "sodium-extra": {
+          "version": "mc1.21.11-0.9.1+fabric",
+          "versionId": "zmsIDdn6",
+          "file": {
+            "url": "https://cdn.modrinth.com/data/PtjYWJkn/versions/zmsIDdn6/sodium-extra-fabric-0.9.1%2Bmc1.21.11.jar",
+            "filename": "sodium-extra-fabric-0.9.1+mc1.21.11.jar",
+            "sha512": "6fb4228c2466efd5f2a4766f5c29ba31123e75842fdcfd3699f45646abe1ed17418f47d1468066f4e059e6d8f20d583b6d77696e78f3dd8a0af5e041dec84487",
+            "size": 442450
+          }
+        },
+        "reeses-sodium-options": {
+          "version": "mc1.21.11-2.0.3+fabric",
+          "versionId": "yIgAFMna",
+          "file": {
+            "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/yIgAFMna/reeses-sodium-options-fabric-2.0.3%2Bmc1.21.11.jar",
+            "filename": "reeses-sodium-options-fabric-2.0.3+mc1.21.11.jar",
+            "sha512": "13b54698be3cbecdcf544ff92186423652c6b1e91544864c979f51297a3159137f794db4e3ee21e0bae3abcf651bb4ecc0e2a5b4aa1eab1f1a81d6529fe82e59",
+            "size": 104577
+          }
+        }
+      }
+    },
+    {
+      "slug": "modmenu",
+      "kind": "mod",
+      "name": "Mod Menu",
+      "description": "Adds a Mods button to browse and configure mods.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "17.0.1",
+      "versionId": "cLkYaVuL",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/mOgUt4GM/versions/cLkYaVuL/modmenu-17.0.1.jar",
+        "filename": "modmenu-17.0.1.jar",
+        "sha512": "cb68cc39c8da66d05a1d2054a0e7b62144881e0cdb5fd681bc4f337b1313fafac394246f4e0aa0c4b6343db9e9750250a00c1bb72689b762da685ce1ccfee51f",
+        "size": 960882
+      },
+      "dependencies": [
+        "fabric-api",
+        "placeholder-api"
+      ]
+    },
+    {
+      "slug": "placeholder-api",
+      "kind": "mod",
+      "name": "Text Placeholder API",
+      "description": "Placeholder and Text manipulation library for your Minecraft mods.",
+      "category": "dependency",
+      "defaultEnabled": true,
+      "version": "2.8.2+1.21.10",
+      "versionId": "qxjzQ9xY",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/eXts2L7r/versions/qxjzQ9xY/placeholder-api-2.8.2%2B1.21.10.jar",
+        "filename": "placeholder-api-2.8.2+1.21.10.jar",
+        "sha512": "507ab10b7938dcd14d33121b8462649bdbe575cef248e917dfdf7566078ab5d0195ca1add95eae4863de3f652eb56db0a8669a67d5b5344e094d086f9dab5a08",
+        "size": 268662
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "rei",
+      "kind": "mod",
+      "name": "Roughly Enough Items",
+      "description": "Item list with recipes and search next to your inventory.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "21.11.816+fabric",
+      "versionId": "QEiKPzyl",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/nfn13YXA/versions/QEiKPzyl/RoughlyEnoughItems-21.11.816-fabric.jar",
+        "filename": "RoughlyEnoughItems-21.11.816-fabric.jar",
+        "sha512": "148faa891db9868594dde20581530d76da88e15044ddf715c25f16a18399e9bff1ac368e947aff6be01efb05b28bc3872d1a44786e1ffeedd9f50733cb513a55",
+        "size": 2480689
+      },
+      "dependencies": [
+        "cloth-config",
+        "architectury-api",
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "architectury-api",
+      "kind": "mod",
+      "name": "Architectury API",
+      "description": "An intermediary api aimed to ease developing multiplatform mods.",
+      "category": "dependency",
+      "defaultEnabled": true,
+      "version": "19.0.1+fabric",
+      "versionId": "uNdfrcQ8",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/lhGA9TYQ/versions/uNdfrcQ8/architectury-19.0.1-fabric.jar",
+        "filename": "architectury-19.0.1-fabric.jar",
+        "sha512": "7ca532844a0ed3d35e8515e13d1e84f8eadfceaae93281b79ad6b4dac253f4634e3dfcc7592f9543871dec117e1a3092c196ba5eae33735162de223be19dc4ad",
+        "size": 568474
+      },
+      "dependencies": [
+        "fabric-api"
+      ]
+    },
+    {
+      "slug": "litematica",
+      "kind": "mod",
+      "name": "Litematica",
+      "description": "Schematic overlays for building (with MaLiLib).",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "0.26.16",
+      "versionId": "mengBR9D",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/bEpr0Arc/versions/mengBR9D/litematica-fabric-1.21.11-0.26.16.jar",
+        "filename": "litematica-fabric-1.21.11-0.26.16.jar",
+        "sha512": "c7d8e4ee3a1a4eacb825b19d389a06e17f6c4b78c3074fd929eb1bb1f5eabdbd77bd09545229b042e50f47aa78deac4005809a4c4bf554537e816e40e2885005",
+        "size": 1966804
+      },
+      "dependencies": [
+        "malilib"
+      ]
+    },
+    {
+      "slug": "malilib",
+      "kind": "mod",
+      "name": "MaLiLib",
+      "description": "A library mod for client-side mods. Contains most of the common/shared code of masa's client mods, and adds some inter-operation support between the dependent mods.",
+      "category": "dependency",
+      "defaultEnabled": true,
+      "version": "0.27.20",
+      "versionId": "loabWpyU",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/GcWjdA9I/versions/loabWpyU/malilib-fabric-1.21.11-0.27.20.jar",
+        "filename": "malilib-fabric-1.21.11-0.27.20.jar",
+        "sha512": "c6a0cbc407962b43316e52b15d928aa2137efa86963cdcea29699f43efa6442519206bdbfac23e4c6c36237931006ecd12b9c6450a4efd1a9a20689e50b5622a",
+        "size": 2161348
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "krypton",
+      "kind": "mod",
+      "name": "Krypton",
+      "description": "Optimizes the networking stack.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "0.2.10",
+      "versionId": "O9LmWYR7",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/fQEb0iXm/versions/O9LmWYR7/krypton-0.2.10.jar",
+        "filename": "krypton-0.2.10.jar",
+        "sha512": "4dcd7228d1890ddfc78c99ff284b45f9cf40aae77ef6359308e26d06fa0d938365255696af4cc12d524c46c4886cdcd19268c165a2bf0a2835202fe857da5cab",
+        "size": 270195
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "simple-voice-chat",
+      "kind": "mod",
+      "name": "Simple Voice Chat",
+      "description": "Proximity voice chat (the server needs the plugin too).",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "fabric-1.21.11-2.6.22",
+      "versionId": "CN53keBo",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/9eGKb6K1/versions/CN53keBo/voicechat-fabric-1.21.11-2.6.22.jar",
+        "filename": "voicechat-fabric-1.21.11-2.6.22.jar",
+        "sha512": "dab29df8577b220e1c2ad97b784c5acb837501c8ba42d83205c085f44b4a6df75bce2477b8c2c7905285d248fd2d195b3dc77f169cb11a226dc2965e23f5859a",
+        "size": 5591115
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "replaymod",
+      "kind": "mod",
+      "name": "Replay Mod",
+      "description": "Record and replay your gameplay.",
+      "category": "optional",
+      "defaultEnabled": false,
+      "version": "1.21.11-2.6.27",
+      "versionId": "LcmLujKZ",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/Nv2fQJo5/versions/LcmLujKZ/replaymod-1.21.11-2.6.27.jar",
+        "filename": "replaymod-1.21.11-2.6.27.jar",
+        "sha512": "0a95a725b4bc25c53733a8e13e79d8d18963992048932d0d9c719f0354b90805a3ea7c9a380f0af3f4d17517eb714ff2d4dcf9ded1b5ce126477cc6ad7a39ba2",
+        "size": 15751929
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "complementary-reimagined",
+      "kind": "shader",
+      "name": "Complementary Reimagined",
+      "description": "Beautiful, balanced shaders. Turns on Iris.",
+      "category": "shader",
+      "defaultEnabled": false,
+      "version": "r5.9.3",
+      "versionId": "Bqen1mJX",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/HVnmMxH1/versions/Bqen1mJX/ComplementaryReimagined_r5.9.3.zip",
+        "filename": "ComplementaryReimagined_r5.9.3.zip",
+        "sha512": "45304b1d7862afdb2177b7e6226fc9c6737911d17a4ad46cc9c519ca4deb935f05072cd337cd8b19a15bb8062b57b54eceec7bdee4cd572d94858e2946d37d85",
+        "size": 553397
+      },
+      "dependencies": [
+        "iris"
+      ]
+    },
+    {
+      "slug": "makeup-ultra-fast-shaders",
+      "kind": "shader",
+      "name": "MakeUp Ultra Fast",
+      "description": "Lightweight shaders for lower-end PCs. Turns on Iris.",
+      "category": "shader",
+      "defaultEnabled": false,
+      "version": "9.5f",
+      "versionId": "IUFkxmHz",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/izsIPI7a/versions/IUFkxmHz/MakeUp-UltraFast-9.5f.zip",
+        "filename": "MakeUp-UltraFast-9.5f.zip",
+        "sha512": "86d7d21eea4eaa257a43896d639d8f8ea1709f721ea70092504d273c7c9b47a16ede605be99548dbebf8ead8749c1effe44e6f1724ecba884d67ef185fff51e4",
+        "size": 403666
+      },
+      "dependencies": [
+        "iris"
+      ]
+    },
+    {
+      "slug": "faithful-64x",
+      "kind": "resourcepack",
+      "name": "Faithful 64x",
+      "description": "Classic textures in 64x detail. Select it in Options > Resource Packs.",
+      "category": "resourcepack",
+      "defaultEnabled": false,
+      "version": "Release-12",
+      "versionId": "vyty9ijM",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/r4GILswZ/versions/vyty9ijM/Faithful%2064x%20-%20December%202025%20Release.zip",
+        "filename": "Faithful 64x - December 2025 Release.zip",
+        "sha512": "14f984cbaeba8b58284ef51e64893204a655d5d54ef3e6c71aff2155829c46d2c867ddda51d24a67a40ea5e9fabb838536ecc61202c3803645b2661272945cde",
+        "size": 16053919
+      },
+      "dependencies": []
+    },
+    {
+      "slug": "worldedit-cui",
+      "kind": "mod",
+      "name": "WorldEdit CUI",
+      "description": "Shows WorldEdit selection outlines. Requires WorldEdit on the server and permission to use it. Configure colors through Mod Menu.",
+      "category": "optional",
+      "defaultEnabled": true,
+      "version": "1.21.11+01",
+      "versionId": "SD1ZtHLA",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/NSLJJooQ/versions/SD1ZtHLA/WorldEditCUI-1.21.11%2B01.jar",
+        "filename": "WorldEditCUI-1.21.11+01.jar",
+        "sha512": "0b81809767c19b17b8f3f388d9fd8d092fd2602215e16fcf5b64cec7af6082dc261148e9817b2a4b3e1501b2ad243abf1870990ab052918e65503a650e84e33e",
+        "size": 706512
+      },
+      "dependencies": [
+        "fabric-api"
+      ],
+      "source": "https://github.com/EngineHub/WorldEditCUI",
+      "license": "EPL-2.0"
+    },
+    {
+      "slug": "flat-items",
+      "kind": "mod",
+      "name": "2D Items · Flat Items",
+      "description": "Dropped items face the camera in a flat retro style. Configure billboard and 3D-model options through Mod Menu.",
+      "category": "optional",
+      "defaultEnabled": true,
+      "version": "1.1.0",
+      "versionId": "DEx5S3uA",
+      "file": {
+        "url": "https://cdn.modrinth.com/data/fqmegrgv/versions/DEx5S3uA/flat_items-fabric-1.21.11-1.1.0.jar",
+        "filename": "flat_items-fabric-1.21.11-1.1.0.jar",
+        "sha512": "be46c755504034332b7ba5a3a57f18e6ab65a11901d833763a3d6a6791e09b5e73e7d585af53cc908316971c55496974c390aec8c9e50f3660ea6557100f7f71",
+        "size": 21034
+      },
+      "dependencies": [
+        "fabric-api"
+      ],
+      "source": "https://github.com/beamingblue/flat-items",
+      "license": "MIT"
+    }
+  ]
+}

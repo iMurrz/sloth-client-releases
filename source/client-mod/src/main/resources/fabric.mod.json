@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "sloth-client",
+  "version": "${version}",
+  "name": "Sloth Client",
+  "description": "Independent Minecraft client with editable HUDs, profiles, zoom and utility controls.",
+  "authors": ["Sloth Client"],
+  "license": "All-Rights-Reserved",
+  "icon": "assets/sloth-client/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.sloth.client.SlothClient"]
+  },
+  "mixins": ["sloth-client.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.17.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

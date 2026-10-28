@@ -1,0 +1,10 @@
+const {app}=require('electron'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sloth-session-capture-'));app.setPath('appData',profile);app.setPath('userData',path.join(profile,'launcher'));
+const out=path.resolve('snapshots/session-0.0.23');fs.mkdirSync(out,{recursive:true});const wait=ms=>new Promise(r=>setTimeout(r,ms));
+app.on('browser-window-created',(_event,win)=>{win.webContents.once('did-finish-load',async()=>{try{const run=s=>win.webContents.executeJavaScript(s);await wait(1800);win.setSize(1280,900);const shot=async n=>{await wait(500);fs.writeFileSync(path.join(out,n+'.png'),(await win.webContents.capturePage()).toPNG());};
+await run("showPage('workshop');loadSessionPlanner()");await shot('session-planner');
+await run("(async()=>{const p=await api.sessionPreview({style:'Mining',accessibility:'readable'});reviewChanges('Session: '+p.label,p.changes);})()");await shot('session-review');await run("document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))");
+await run("previewSupportReport()");await shot('support-preview');await run("document.querySelector('dialog[open]').dispatchEvent(new Event('cancel',{cancelable:true}))");
+await run("showPage('history');loadStartupTimeline()");await shot('startup-timeline');
+await run("showPage('downloads')");await shot('download-center');console.log('Capture-only isolated launcher review saved to '+out);app.exit(0);
+}catch(e){console.error(e);app.exit(1);}});});require('../src/main');

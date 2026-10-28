@@ -1,0 +1,14 @@
+name: SlothQABridge
+version: 1.0.0
+main: com.sloth.qa.SlothQaBridge
+api-version: '1.21'
+description: Explicit per-player authorization bridge for Sloth Client QA modules.
+commands:
+  slothqa:
+    description: Toggle authorized Sloth QA capabilities for yourself.
+    usage: /slothqa <on|off|status>
+    permission: slothqa.use
+permissions:
+  slothqa.use:
+    description: Allows a tester to activate Sloth QA capabilities.
+    default: op

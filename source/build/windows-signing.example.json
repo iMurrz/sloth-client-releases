@@ -1,0 +1,7 @@
+{
+  "endpoint": "https://eus.codesigning.azure.net",
+  "codeSigningAccountName": "REPLACE_ACCOUNT_NAME",
+  "certificateProfileName": "REPLACE_PROFILE_NAME",
+  "publisherName": "REPLACE_EXACT_CERTIFICATE_PUBLISHER",
+  "profileType": "PublicTrust"
+}

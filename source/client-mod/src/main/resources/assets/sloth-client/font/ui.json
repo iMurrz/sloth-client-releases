@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "type": "ttf",
+      "file": "sloth-client:sloth-smooth-medium.ttf",
+      "size": 10.0,
+      "oversample": 8.0,
+      "shift": [0, 0],
+      "skip": ""
+    },
+    { "type": "reference", "id": "minecraft:default" }
+  ]
+}

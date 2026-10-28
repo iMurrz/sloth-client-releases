@@ -1,0 +1,26 @@
+node_modules/
+.tools/
+dist/
+release/
+snapshots/
+*.log
+*.part
+client-mod/.gradle/
+client-mod/build/
+client-mod/run/
+client-mod/.idea/
+client-mod/out/
+launchwrapper/build/
+
+retired/
+
+# Machine-generated or secret material that must never be committed
+scripts/appearance-diagnostic-profile/
+build/windows-signing.json
+*.key
+*.p12
+*.pfx
+*private*.pem
+.env
+.env.*
+.fix-backup-*/
