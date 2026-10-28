@@ -18,9 +18,9 @@ import java.util.function.Supplier;
 public final class SlothTitleScreen extends SlothScreen {
     private static final Identifier MARK=Identifier.fromNamespaceAndPath("sloth-client","textures/gui/pink-sloth-emblem.png");
     private static final Identifier BACKGROUND=Identifier.fromNamespaceAndPath("sloth-client","textures/gui/pink-workspace-background.png");
-    private static final int PETALS=46;
+    private static final int PETALS=64;
     private static final int[] PETAL_COLOURS={0xFFFFC6DC,0xFFFFA6C9,0xFFFF8FBC,0xFFFFE0EC};
-    private final float[] px=new float[PETALS],py=new float[PETALS],pv=new float[PETALS],pp=new float[PETALS];
+    private final float[] px=new float[PETALS],py=new float[PETALS],pv=new float[PETALS],pp=new float[PETALS],pr=new float[PETALS],pw=new float[PETALS];
     private final int[] pz=new int[PETALS];
     private long lastFrame,openedAt;
     private Supplier<PlayerSkin> skin;
@@ -76,9 +76,13 @@ public final class SlothTitleScreen extends SlothScreen {
         for(int i=0;i<PETALS;i++){
             px[i]=(i*977%1000)/1000f*width;
             py[i]=(i*613%1000)/1000f*height;
-            pv[i]=14+(i*37%22);
+            // Three depth layers: far (small, slow), mid, near (big, fast, spinning).
+            int layer=i%8==0?2:i%3==0?1:0;
+            pz[i]=layer==2?9:layer==1?5:3;
+            pv[i]=layer==2?48+(i*7%18):layer==1?26+(i*11%12):12+(i*5%8);
             pp[i]=i*1.7f;
-            pz[i]=i%5==0?3:2;
+            pr[i]=i*0.9f;
+            pw[i]=layer==2?2.2f:layer==1?1.2f:0.4f;
         }
     }
 
@@ -110,16 +114,30 @@ public final class SlothTitleScreen extends SlothScreen {
         float dt=Math.min(0.1f,(now-lastFrame)/1e9f);
         lastFrame=now;
         boolean move=SlothTheme.animated();
+        // A slow wind gust that pushes every petal the same way for a moment.
+        float gust=(float)Math.max(0,Math.sin(System.currentTimeMillis()/4200.0))*26f;
         for(int i=0;i<PETALS;i++){
             if(move){
                 py[i]+=pv[i]*dt;
                 pp[i]+=dt*1.3f;
-                px[i]+=(float)Math.sin(pp[i])*10f*dt+6f*dt;
-                if(py[i]>height){py[i]=-4;px[i]=Math.abs(i*389+(int)(now/1000000L))%Math.max(1,width);}
-                if(px[i]>width)px[i]=-4;
+                pr[i]+=dt*pw[i];
+                px[i]+=((float)Math.sin(pp[i])*10f+6f+gust*(pz[i]/9f+0.3f))*dt;
+                if(py[i]>height+8){py[i]=-10;px[i]=Math.abs(i*389+(int)(now/1000000L))%Math.max(1,width);}
+                if(px[i]>width+8)px[i]=-10;
             }
-            int x=Math.round(px[i]),y=Math.round(py[i]),s=pz[i];
-            g.fill(x,y,x+s,y+s,PETAL_COLOURS[i%PETAL_COLOURS.length]);
+            int s=pz[i],col=PETAL_COLOURS[i%PETAL_COLOURS.length];
+            if(s>=5){
+                g.pose().pushMatrix();
+                g.pose().translate(Math.round(px[i]),Math.round(py[i]));
+                g.pose().rotate(pr[i]);
+                g.fill(-s/2,-s*2/5,s/2,s*2/5,col);
+                g.fill(-s/2,-s*2/5,s/2,-s/5,0xFFFFF0F6);
+                g.fill(s/2-2,-s/5,s/2,s/5,0xFFFF7FB3);
+                g.pose().popMatrix();
+            }else{
+                int x=Math.round(px[i]),y=Math.round(py[i]);
+                g.fill(x,y,x+s,y+s,col);
+            }
         }
     }
 
