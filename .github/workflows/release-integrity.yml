@@ -1,0 +1,35 @@
+name: Release integrity
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag (v0.0.34) or latest
+        required: true
+        default: latest
+        type: string
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Verify signed release downloads
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Read public verification script
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Verify hashes and Ed25519 signatures
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || 'latest' }}
+        run: node .github/scripts/verify-release.cjs
+      - name: Save verification evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: release-integrity
+          path: release-integrity.json
+          if-no-files-found: error
+          retention-days: 90
